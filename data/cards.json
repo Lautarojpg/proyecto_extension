@@ -1,0 +1,77 @@
+[
+    {
+        "id": "carta_001",
+        "previo_id": null,
+        "titulo": "¡Puesto de Jugos!",
+        "descripcion": "Quieres empezar tu primer emprendimiento vendiendo jugos. ¿Compras frutas de buena calidad o las más baratas?",
+        "imagen": "🍋",
+        "opcion_izquierda": {
+            "texto": "Baratas",
+            "siguiente_id": "carta_002",
+            "impacto": {
+                "dinero": -5,
+                "reputacion": -10,
+                "insumos": 15
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Buena Calidad",
+            "siguiente_id": "carta_003",
+            "impacto": {
+                "dinero": -15,
+                "reputacion": 15,
+                "insumos": 10
+            }
+        }
+    },
+    {
+        "id": "carta_002",
+        "previo_id": "carta_001",
+        "titulo": "Clientes Insatisfechos",
+        "descripcion": "El jugo con fruta barata no gustó mucho. ¿Ofreces un descuento para atraer clientes?",
+        "imagen": "😞",
+        "opcion_izquierda": {
+            "texto": "No dar descuento",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": -10,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Dar Descuento",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": 5,
+                "reputacion": 5,
+                "insumos": -5
+            }
+        }
+    },
+    {
+        "id": "carta_003",
+        "previo_id": "carta_001",
+        "titulo": "¡Todo un éxito!",
+        "descripcion": "A la gente le encantó la calidad. ¿Inviertes las ganancias en poner un cartel publicitario?",
+        "imagen": "🌟",
+        "opcion_izquierda": {
+            "texto": "Guardar Ahorros",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": 15,
+                "reputacion": 0,
+                "insumos": -5
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Invertir en Publicidad",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": -10,
+                "reputacion": 20,
+                "insumos": -5
+            }
+        }
+    }
+]
