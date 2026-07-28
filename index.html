@@ -5,10 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Juego de Economía - Extensión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <div id="game-app" class="game-container">
+
+    <div id="bg-layer" class="bg-illustration">
+        <img src="public/image/limonada_portada.png" alt="Lemonade Stand">
+    </div>
+
+    <div id="toast-layer" class="toast-layer"></div>
+    
+    <!-- ==================== ESCENA 1: MENÚ PRINCIPAL ==================== -->
+        <section id="scene-main-menu" class="scene active-scene">
+            <div class="menu-content">
+                <!-- Cartel de Título Estilo Madera -->
+                <div class="title-board animate-bounce-soft">
+                    <h1 class="game-title">Lemonade Stand</h1>
+                </div>
+                <!-- Botón Principal JUGAR -->
+                <div class="menu-actions">
+                    <button id="btn-start" class="btn-primary-large pulse-hover">
+                        <span class="btn-icon">▶</span>
+                        <span class="btn-text">¡INICIAR JUEGO!</span>
+                    </button>
+                    <!-- Botones Secundarios -->
+                    <div class="menu-sub-actions">
+                        <button id="btn-settings" class="btn-secondary">
+                            <span class="btn-icon">⚙️</span>
+                            <span>Ajustes</span>
+                        </button>
+                        <button id="btn-credits" class="btn-secondary">
+                            <span class="btn-icon">📜</span>
+                            <span>Créditos</span>
+                        </button>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <!-- Marcadores Económicos -->
     <div id="stats-bar">
@@ -26,6 +66,8 @@
             <p id="card-description">Cargando contenido...</p>
         </div>
     </div>
+</div>
+    
 
     <script src="app.js"></script>
 </body>

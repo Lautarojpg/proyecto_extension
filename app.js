@@ -92,6 +92,11 @@ function onEnd() {
     currentX = 0;
 }
 
+document.getElementById("btn-start").onclick = () => {
+    document.getElementById("scene-main-menu").style.display="none";
+    document.getElementById("stats-bar").style.display="flex";
+    document.getElementById("game-container").style.display="flex";
+}
 // Event Listeners
 cardElem.addEventListener('mousedown', onStart);
 document.addEventListener('mousemove', onMove);
