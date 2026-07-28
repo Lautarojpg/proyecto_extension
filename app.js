@@ -91,12 +91,13 @@ function onEnd() {
     }
     currentX = 0;
 }
-
+// boton de inciar el juego
 document.getElementById("btn-start").onclick = () => {
     document.getElementById("scene-main-menu").style.display="none";
     document.getElementById("stats-bar").style.display="flex";
     document.getElementById("game-container").style.display="flex";
 }
+
 // Event Listeners
 cardElem.addEventListener('mousedown', onStart);
 document.addEventListener('mousemove', onMove);
@@ -107,4 +108,6 @@ document.addEventListener('touchmove', onMove);
 document.addEventListener('touchend', onEnd);
 
 // Iniciar juego
+
+document.getElementById("modal-settings").style.display = "none";
 cargarJuego();

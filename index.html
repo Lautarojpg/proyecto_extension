@@ -16,7 +16,7 @@
     <div id="game-app" class="game-container">
 
     <div id="bg-layer" class="bg-illustration">
-        <img src="public/image/limonada_portada.png" alt="Lemonade Stand">
+        <img src="public/image/limonada_portada.png" alt="Puesto de Limonada">
     </div>
 
     <div id="toast-layer" class="toast-layer"></div>
@@ -26,7 +26,7 @@
             <div class="menu-content">
                 <!-- Cartel de Título Estilo Madera -->
                 <div class="title-board animate-bounce-soft">
-                    <h1 class="game-title">Lemonade Stand</h1>
+                    <h1 class="game-title">Puesto de Limonada</h1>
                 </div>
                 <!-- Botón Principal JUGAR -->
                 <div class="menu-actions">
@@ -44,7 +44,6 @@
                             <span class="btn-icon">📜</span>
                             <span>Créditos</span>
                         </button>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -55,6 +54,7 @@
         <div class="stat">💰 <span id="stat-dinero">50</span></div>
         <div class="stat">⭐ <span id="stat-reputacion">50</span></div>
         <div class="stat">📦 <span id="stat-insumos">50</span></div>
+        <button id="btn-hud-settings" class="btn-hud-icon">⚙️</button>
     </div>
 
     <!-- Contenedor Principal de la Carta -->
@@ -67,9 +67,46 @@
         </div>
     </div>
 </div>
+
+<!-- ============ MODAL DE AJUSTES ============ -->
+<div id="modal-settings" class="modal-overlay hidden-modal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2>⚙️ Ajustes del Juego</h2>
+            <button class="btn-close-modal" data-close="modal-settings">✖</button>
+        </div>
+        <div class="modal-body">
+            <div class="setting-row">
+                <span>🔊 Volumen de Sonido:</span>
+                <div class="volume-control">
+                    <input type="range" id="volume-slider" min="0" max="100" value="80" class="range-slider">
+                    <span id="volume-value" class="volume-badge">80%</span>
+                </div>
+            </div>
+            <div class="setting-row">
+                <span>🖥️ Calibración de Pantalla:</span>
+                <div class="calibrate-actions">
+                    <button id="btn-toggle-fullscreen" class="btn-modal-action" title="Pantalla Completa">📺 Pantalla Completa</button>
+                </div>
+            </div>
+            <div class="setting-row">
+                <span>🔔 Efectos de Sonido (SFX):</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-sfx" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btn-restart-game" class="btn-modal-danger">🔄 Reiniciar Partida</button>
+            <button class="btn-modal-confirm" data-close="modal-settings">Aceptar</button>
+        </div>
+    </div>
+</div>
     
 
     <script src="app.js"></script>
+    <script src="btn-ajuste.js"></script>
 </body>
 
 </html>
