@@ -141,7 +141,7 @@ button{
    HUD
 =========================== */
 #stats-bar{
-    position:absolute;
+    position:relative;
     top:0;
     left:0;
     width:100%;
@@ -183,6 +183,7 @@ button{
     flex-direction:column;
     justify-content:space-between;
     transition:.15s;
+    margin-left:50%
 }
 
 .card-image{
@@ -223,27 +224,31 @@ button{
     BOTON AJUSTES
 ==========================*/
 .btn-hud-icon{
-    width:48px;
-    height:48px;
+    position:absolute;      /* 👈 lo saca del flujo flex */
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    width:34px;
+    height:34px;
     border:none;
     border-radius:50%;
     cursor:pointer;
     font-size:22px;
-    background:white;
     box-shadow:0 5px 12px rgba(0,0,0,.2);
     transition:.25s;
 }
 
 .btn-hud-icon:hover{
-    transform:scale(1.08) rotate(20deg);
+    transform:translateY(-50%) scale(1.08) rotate(20deg);
 }
-
 /*==========================
         MODAL
 ==========================*/
+
 .hidden-modal{
     display:none;
 }
+
 
 .modal-overlay{
     position:fixed;
