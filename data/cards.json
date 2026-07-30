@@ -1,27 +1,27 @@
 [
     {
         "id": "carta_001",
-        "fase": "casa",
+        "fase": "puesto_casa",
         "min_reputacion": 0,
         "previo_id": null,
-        "titulo": "¡Tu primer puesto de limonada!",
-        "descripcion": "Decidiste abrir un pequeño puesto frente a tu casa. ¿Qué limones comprarás para comenzar?",
-        "imagen": "🍋",
+        "titulo": "¡Iniciás tu puesto de chipá!",
+        "descripcion": "Decidiste abrir un pequeño puesto de chipá frente a tu casa. ¿Qué ingredientes comprarás para comenzar?",
+        "imagen": "🧀",
         "opcion_izquierda": {
-            "texto": "Comprar los más baratos",
+            "texto": "Comprar ingredientes baratos",
             "siguiente_id": "carta_002",
             "impacto": {
-                "dinero": -5,
-                "reputacion": -5,
-                "insumos": 15
+                "dinero": 10,
+                "reputacion": -15,
+                "insumos": 20
             }
         },
         "opcion_derecha": {
-            "texto": "Comprar los mejores",
+            "texto": "Comprar ingredientes de calidad",
             "siguiente_id": "carta_003",
             "impacto": {
-                "dinero": -15,
-                "reputacion": 15,
+                "dinero": -20,
+                "reputacion": 20,
                 "insumos": 10
             }
         }
@@ -29,51 +29,23 @@
 
     {
         "id": "carta_002",
-        "fase": "casa",
+        "fase": "puesto_casa",
         "min_reputacion": 0,
         "previo_id": "carta_001",
-        "titulo": "Clientes descontentos",
-        "descripcion": "Muchos clientes notaron que la limonada no tenía el mejor sabor.",
+        "titulo": "El negocio no va del todo bien",
+        "descripcion": "Los clientes notan que el chipá no tiene el sabor esperado y muchos dejan de comprar.",
         "imagen": "😕",
         "opcion_izquierda": {
             "texto": "Seguir igual",
             "siguiente_id": "carta_004",
             "impacto": {
-                "dinero": 10,
-                "reputacion": -15,
-                "insumos": -5
+                "dinero": 15,
+                "reputacion": -20,
+                "insumos": -10
             }
         },
         "opcion_derecha": {
-            "texto": "Mejorar la receta",
-            "siguiente_id": "carta_003",
-            "impacto": {
-                "dinero": -10,
-                "reputacion": 15,
-                "insumos": -5
-            }
-        }
-    },
-
-    {
-        "id": "carta_003",
-        "fase": "casa",
-        "min_reputacion": 0,
-        "previo_id": "carta_001",
-        "titulo": "¡A todos les encantó!",
-        "descripcion": "La calidad de tu limonada hizo que mucha gente volviera a comprar.",
-        "imagen": "🌟",
-        "opcion_izquierda": {
-            "texto": "Guardar el dinero",
-            "siguiente_id": "carta_004",
-            "impacto": {
-                "dinero": 20,
-                "reputacion": 5,
-                "insumos": -5
-            }
-        },
-        "opcion_derecha": {
-            "texto": "Comprar un cartel",
+            "texto": "Cambiar la receta",
             "siguiente_id": "carta_005",
             "impacto": {
                 "dinero": -15,
@@ -84,168 +56,196 @@
     },
 
     {
-        "id": "carta_004",
-        "fase": "casa",
-        "min_reputacion": 20,
-        "previo_id": "carta_003",
-        "titulo": "Mucho trabajo",
-        "descripcion": "Cada vez llegan más clientes y ya no das abasto para atenderlos solo.",
-        "imagen": "🥵",
+        "id": "carta_003",
+        "fase": "puesto_casa",
+        "min_reputacion": 0,
+        "previo_id": "carta_001",
+        "titulo": "¡Muchos clientes!",
+        "descripcion": "El aroma del chipá recién horneado atrae a muchas personas del barrio.",
+        "imagen": "😊",
         "opcion_izquierda": {
-            "texto": "Seguir solo",
-            "siguiente_id": "carta_006",
+            "texto": "Dedicarle más tiempo",
+            "siguiente_id": "carta_005",
             "impacto": {
-                "dinero": 15,
-                "reputacion": -10,
-                "insumos": -15
+                "dinero": 20,
+                "reputacion": 10,
+                "insumos": -10
             }
         },
         "opcion_derecha": {
-            "texto": "Buscar ayuda",
-            "siguiente_id": "carta_007",
+            "texto": "Ir a jugar",
+            "siguiente_id": "carta_006",
             "impacto": {
                 "dinero": -10,
-                "reputacion": 10,
-                "insumos": 20
+                "reputacion": -15,
+                "insumos": -5
+            }
+        }
+    },
+
+    {
+        "id": "carta_004",
+        "fase": "puesto_casa",
+        "min_reputacion": 0,
+        "previo_id": "carta_002",
+        "titulo": "Las ventas bajan",
+        "descripcion": "Cada vez vienen menos personas a comprar chipá.",
+        "imagen": "📉",
+        "opcion_izquierda": {
+            "texto": "Bajar los precios",
+            "siguiente_id": "game_over",
+            "impacto": {
+                "dinero": -30,
+                "reputacion": -10,
+                "insumos": -10
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Cambiar la receta",
+            "siguiente_id": "carta_006",
+            "impacto": {
+                "dinero": -15,
+                "reputacion": 15,
+                "insumos": -5
             }
         }
     },
 
     {
         "id": "carta_005",
-        "fase": "casa",
-        "min_reputacion": 30,
+        "fase": "puesto_casa",
+        "min_reputacion": 20,
         "previo_id": "carta_003",
-        "titulo": "Publicidad casera",
-        "descripcion": "El cartel llama la atención de muchas personas que pasan por el barrio.",
-        "imagen": "📢",
+        "titulo": "El negocio tiene un gran éxito",
+        "descripcion": "Cada mañana vendés más chipá y la fila de clientes no deja de crecer.",
+        "imagen": "🎉",
         "opcion_izquierda": {
-            "texto": "Hacer más carteles",
-            "siguiente_id": "carta_007",
+            "texto": "Mejorar el puesto con un cartel",
+            "siguiente_id": "carta_006",
             "impacto": {
-                "dinero": -10,
-                "reputacion": 15,
-                "insumos": -5
+                "dinero": -20,
+                "reputacion": 20,
+                "insumos": 0
             }
         },
         "opcion_derecha": {
-            "texto": "Esperar resultados",
+            "texto": "Seguir igual",
             "siguiente_id": "carta_006",
             "impacto": {
-                "dinero": 5,
+                "dinero": 20,
                 "reputacion": 5,
-                "insumos": 0
+                "insumos": -10
             }
         }
     },
 
     {
         "id": "carta_006",
-        "fase": "casa",
-        "min_reputacion": 40,
-        "previo_id": "carta_004",
-        "titulo": "Un amigo quiere ayudarte",
-        "descripcion": "Tomás, un compañero de la escuela, quiere ayudarte a atender el puesto después de clases. Te pide una pequeña paga.",
-        "imagen": "🧒",
+        "fase": "puesto_casa",
+        "min_reputacion": 30,
+        "previo_id": "carta_005",
+        "titulo": "Aparece la competencia",
+        "descripcion": "Otro vecino abrió un puesto de chipá muy cerca del tuyo.",
+        "imagen": "🏪",
         "opcion_izquierda": {
-            "texto": "Trabajar solo",
-            "siguiente_id": "carta_008",
+            "texto": "Vender más barato",
+            "siguiente_id": "carta_007",
             "impacto": {
-                "dinero": 10,
-                "reputacion": -10,
-                "insumos": -15
+                "dinero": -15,
+                "reputacion": 20,
+                "insumos": -10
             }
         },
         "opcion_derecha": {
-            "texto": "Contratarlo",
-            "siguiente_id": "carta_009",
+            "texto": "Vender más caro",
+            "siguiente_id": "carta_008",
             "impacto": {
-                "dinero": -20,
-                "reputacion": 15,
-                "insumos": 20
+                "dinero": 20,
+                "reputacion": -20,
+                "insumos": -10
             }
         }
     },
 
     {
         "id": "carta_007",
-        "fase": "casa",
+        "fase": "puesto_casa",
         "min_reputacion": 50,
         "previo_id": "carta_006",
-        "titulo": "¡Hay una feria!",
-        "descripcion": "El barrio organiza una feria. Podrías instalar tu puesto allí durante el fin de semana.",
-        "imagen": "🎪",
+        "titulo": "¡Ganaste más clientes!",
+        "descripcion": "Tus buenos precios hicieron que muchas personas eligieran tu puesto.",
+        "imagen": "😁",
         "opcion_izquierda": {
-            "texto": "Quedarte en casa",
-            "siguiente_id": "carta_008",
+            "texto": "Comprar más ingredientes",
+            "siguiente_id": "carta_009",
             "impacto": {
-                "dinero": 5,
-                "reputacion": 0,
-                "insumos": 0
+                "dinero": -20,
+                "reputacion": 10,
+                "insumos": 30
             }
         },
         "opcion_derecha": {
-            "texto": "Ir a la feria",
-            "siguiente_id": "carta_009",
+            "texto": "Comprar un horno mejor",
+            "siguiente_id": "carta_010",
             "impacto": {
-                "dinero": 30,
-                "reputacion": 20,
-                "insumos": -15
+                "dinero": -40,
+                "reputacion": 15,
+                "insumos": 10
             }
         }
     },
 
     {
         "id": "carta_008",
-        "fase": "casa",
-        "min_reputacion": 80,
+        "fase": "puesto_casa",
+        "min_reputacion": 50,
         "previo_id": "carta_006",
-        "titulo": "Tomás recibió otra oferta",
-        "descripcion": "El papá de Tomás le ofreció trabajar en su taller y ganar más dinero. Ya no podrá ayudarte.",
-        "imagen": "🔨",
+        "titulo": "Perdés algunos clientes",
+        "descripcion": "Al aumentar los precios, varias personas comenzaron a comprar en otro puesto.",
+        "imagen": "😟",
         "opcion_izquierda": {
-            "texto": "Buscar otro ayudante",
-            "siguiente_id": "carta_010",
+            "texto": "Poner carteles",
+            "siguiente_id": "carta_007",
             "impacto": {
-                "dinero": -25,
-                "reputacion": 10,
-                "insumos": 15
+                "dinero": -15,
+                "reputacion": 15,
+                "insumos": 0
             }
         },
         "opcion_derecha": {
-            "texto": "Trabajar solo",
-            "siguiente_id": "carta_010",
+            "texto": "Guardar dinero",
+            "siguiente_id": "carta_021",
             "impacto": {
-                "dinero": 10,
-                "reputacion": -10,
-                "insumos": -20
+                "dinero": 25,
+                "reputacion": -5,
+                "insumos": 0
             }
         }
     },
 
     {
         "id": "carta_009",
-        "fase": "casa",
-        "min_reputacion": 120,
+        "fase": "puesto_casa",
+        "min_reputacion": 70,
         "previo_id": "carta_007",
-        "titulo": "Cada vez sos más conocido",
-        "descripcion": "Cada día llegan más clientes y tu pequeño puesto ya quedó chico.",
-        "imagen": "🏡",
+        "titulo": "Se renovó el stock",
+        "descripcion": "Ahora tenés suficientes ingredientes para seguir vendiendo durante varios días.",
+        "imagen": "📦",
         "opcion_izquierda": {
-            "texto": "Seguir igual",
-            "siguiente_id": "carta_010",
+            "texto": "Seguir vendiendo",
+            "siguiente_id": "carta_011",
             "impacto": {
-                "dinero": 20,
-                "reputacion": 5,
-                "insumos": -10
+                "dinero": 30,
+                "reputacion": 10,
+                "insumos": -20
             }
         },
         "opcion_derecha": {
-            "texto": "Ahorrar para un local",
-            "siguiente_id": "carta_010",
+            "texto": "Comprar más equipamiento",
+            "siguiente_id": "game_over",
             "impacto": {
-                "dinero": -20,
-                "reputacion": 20,
+                "dinero": -80,
+                "reputacion": -5,
                 "insumos": 0
             }
         }
@@ -253,15 +253,351 @@
 
     {
         "id": "carta_010",
-        "fase": "barrio",
-        "min_reputacion": 200,
+        "fase": "puesto_casa",
+        "min_reputacion": 70,
+        "previo_id": "carta_007",
+        "titulo": "La producción aumentó",
+        "descripcion": "Gracias al horno nuevo ahora podés preparar mucho más chipá en menos tiempo.",
+        "imagen": "🔥",
+        "opcion_izquierda": {
+            "texto": "Comprar más ingredientes",
+            "siguiente_id": "carta_009",
+            "impacto": {
+                "dinero": -20,
+                "reputacion": 5,
+                "insumos": 30
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir produciendo",
+            "siguiente_id": "carta_011",
+            "impacto": {
+                "dinero": 35,
+                "reputacion": 15,
+                "insumos": -20
+            }
+        }
+    },
+
+    {
+        "id": "carta_011",
+        "fase": "puesto_casa",
+        "min_reputacion": 80,
         "previo_id": "carta_009",
-        "titulo": "¡Felicitaciones!",
-        "descripcion": "Gracias al esfuerzo y las buenas decisiones, abriste tu primer local en el centro del barrio.",
+        "titulo": "Tomás quiere ayudarte",
+        "descripcion": "Tomás, un compañero de la escuela, se ofrece para ayudarte a preparar y vender chipá por una pequeña paga.",
+        "imagen": "🧑‍🍳",
+        "opcion_izquierda": {
+            "texto": "Contratar a Tomás",
+            "siguiente_id": "carta_012",
+            "impacto": {
+                "dinero": -20,
+                "reputacion": 15,
+                "insumos": 10
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir trabajando solo",
+            "siguiente_id": "carta_013",
+            "impacto": {
+                "dinero": 10,
+                "reputacion": -10,
+                "insumos": -10
+            }
+        }
+    },
+
+    {
+        "id": "carta_012",
+        "fase": "puesto_casa",
+        "min_reputacion": 90,
+        "previo_id": "carta_011",
+        "titulo": "El trabajo es más liviano",
+        "descripcion": "Ahora pueden atender más clientes sin apurarse. Tenés tiempo para pensar cómo mejorar el negocio.",
+        "imagen": "🤝",
+        "opcion_izquierda": {
+            "texto": "Mejorar la receta",
+            "siguiente_id": "carta_014",
+            "impacto": {
+                "dinero": -15,
+                "reputacion": 20,
+                "insumos": -10
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Hacer publicidad",
+            "siguiente_id": "carta_015",
+            "impacto": {
+                "dinero": -20,
+                "reputacion": 25,
+                "insumos": 0
+            }
+        }
+    },
+
+    {
+        "id": "carta_013",
+        "fase": "puesto_casa",
+        "min_reputacion": 90,
+        "previo_id": "carta_011",
+        "titulo": "Estás muy cansado",
+        "descripcion": "Trabajar todos los días sin ayuda empieza a pasarte factura.",
+        "imagen": "🥵",
+        "opcion_izquierda": {
+            "texto": "Descansar un día",
+            "siguiente_id": "carta_016",
+            "impacto": {
+                "dinero": -10,
+                "reputacion": 5,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir trabajando",
+            "siguiente_id": "carta_022",
+            "impacto": {
+                "dinero": 15,
+                "reputacion": -15,
+                "insumos": -15
+            }
+        }
+    },
+
+    {
+        "id": "carta_014",
+        "fase": "puesto_casa",
+        "min_reputacion": 100,
+        "previo_id": "carta_012",
+        "titulo": "Un cliente hace un reclamo",
+        "descripcion": "Un cliente dice que uno de los chipás salió quemado y pide una solución.",
+        "imagen": "🙋",
+        "opcion_izquierda": {
+            "texto": "Devolver el dinero",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": -10,
+                "reputacion": 20,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Ignorar el reclamo",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": -20,
+                "insumos": 0
+            }
+        }
+    },
+
+    {
+        "id": "carta_015",
+        "fase": "puesto_casa",
+        "min_reputacion": 100,
+        "previo_id": "carta_012",
+        "titulo": "Más personas conocen tu puesto",
+        "descripcion": "Gracias a la publicidad llegan nuevos clientes todos los días.",
+        "imagen": "📢",
+        "opcion_izquierda": {
+            "texto": "Ahorrar dinero",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": 25,
+                "reputacion": 10,
+                "insumos": -10
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir haciendo publicidad",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": -20,
+                "reputacion": 25,
+                "insumos": -5
+            }
+        }
+    },
+
+    {
+        "id": "carta_016",
+        "fase": "puesto_casa",
+        "min_reputacion": 100,
+        "previo_id": "carta_013",
+        "titulo": "Volvés con más energía",
+        "descripcion": "Descansar te permitió recuperar fuerzas para seguir atendiendo mejor.",
+        "imagen": "😌",
+        "opcion_izquierda": {
+            "texto": "Volver al trabajo",
+            "siguiente_id": "carta_019",
+            "impacto": {
+                "dinero": 15,
+                "reputacion": 10,
+                "insumos": -10
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Volver al trabajo",
+            "siguiente_id": "carta_019",
+            "impacto": {
+                "dinero": 15,
+                "reputacion": 10,
+                "insumos": -10
+            }
+        }
+    },
+
+    {
+        "id": "carta_017",
+        "fase": "puesto_casa",
+        "min_reputacion": 100,
+        "previo_id": "carta_022",
+        "titulo": "La atención empeora",
+        "descripcion": "El cansancio hace que atiendas mal y algunos clientes dejan de volver.",
+        "imagen": "😓",
+        "opcion_izquierda": {
+            "texto": "Descansar",
+            "siguiente_id": "carta_016",
+            "impacto": {
+                "dinero": -10,
+                "reputacion": 10,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir igual",
+            "siguiente_id": "game_over",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": -40,
+                "insumos": -20
+            }
+        }
+    },
+
+    {
+        "id": "carta_018",
+        "fase": "puesto_casa",
+        "min_reputacion": 120,
+        "previo_id": ["carta_014", "carta_019"],
+        "titulo": "Un amigo necesita ayuda",
+        "descripcion": "Un amigo quiere comprar chipá, pero olvidó su billetera y promete pagarte mañana.",
+        "imagen": "😊",
+        "opcion_izquierda": {
+            "texto": "Confiar en él",
+            "siguiente_id": "carta_023",
+            "impacto": {
+                "dinero": -10,
+                "reputacion": 20,
+                "insumos": -5
+            }
+        },
+        "opcion_derecha": {
+            "texto": "No venderle",
+            "siguiente_id": "carta_023",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": -10,
+                "insumos": 0
+            }
+        }
+    },
+
+    {
+        "id": "carta_019",
+        "fase": "puesto_casa",
+        "min_reputacion": 120,
+        "previo_id": "carta_015",
+        "titulo": "Cada vez sos más conocido",
+        "descripcion": "El barrio entero habla de tu puesto de chipá y las filas son cada vez más largas.",
+        "imagen": "⭐",
+        "opcion_izquierda": {
+            "texto": "Seguir vendiendo normalmente",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": 20,
+                "reputacion": 10,
+                "insumos": -20
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir vendiendo normalmente",
+            "siguiente_id": "carta_018",
+            "impacto": {
+                "dinero": 20,
+                "reputacion": 10,
+                "insumos": -20
+            }
+        }
+    },
+
+    {
+        "id": "carta_020",
+        "fase": "puesto_casa",
+        "min_reputacion": 150,
+        "previo_id": ["carta_018", "carta_019"],
+        "titulo": "¡El puesto quedó chico!",
+        "descripcion": "Gracias a todas las buenas decisiones, tu puesto ya no alcanza para atender a tantos clientes. Es momento de pensar en abrir un verdadero local.",
         "imagen": "🏪",
         "opcion_izquierda": {
-            "texto": "Continuar",
-            "siguiente_id": "carta_011",
+            "texto": "Abrir el local cuanto antes",
+            "siguiente_id": "carta_021",
+            "impacto": {
+                "dinero": -60,
+                "reputacion": 30,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Abrir el local cuanto antes",
+            "siguiente_id": "carta_021",
+            "impacto": {
+                "dinero": -60,
+                "reputacion": 30,
+                "insumos": 0
+            }
+        }
+    },
+
+    {
+        "id": "carta_021",
+        "fase": "puesto_casa",
+        "min_reputacion": 150,
+        "previo_id": "carta_08",
+        "titulo": "¡Tenes dinero Extra!",
+        "descripcion": "Despues de realizar las ventas y ahorrar un poco de dinero, decidis mejorar el horno.",
+        "imagen": "🛒",
+        "opcion_izquierda": {
+            "texto": "Comprar un horno mejor",
+            "siguiente_id": "carta_010",
+            "impacto": {
+                "dinero": -30,
+                "reputacion": 20,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Comprar un horno mejor",
+            "siguiente_id": "carta_010",
+            "impacto": {
+                "dinero": -30,
+                "reputacion": 20,
+                "insumos": 0
+            }
+        }
+    },
+
+    {
+        "id": "carta_022",
+        "fase": "puesto_casa",
+        "min_reputacion": 150,
+        "previo_id": "carta_08",
+        "titulo": "La calidad del chipa baja",
+        "descripcion": "El cansancion afecto en la calidad del chipá, y los clientes se quejan de que no es tan bueno como antes.",
+        "imagen": "📉",
+        "opcion_izquierda": {
+            "texto": "descarsar un dia",
+            "siguiente_id": "carta_016",
             "impacto": {
                 "dinero": 0,
                 "reputacion": 0,
@@ -269,13 +605,43 @@
             }
         },
         "opcion_derecha": {
-            "texto": "¡A trabajar!",
-            "siguiente_id": "carta_011",
+            "texto": "seguir trabajando",
+            "siguiente_id": "carta_017",
             "impacto": {
-                "dinero": 0,
-                "reputacion": 0,
+                "dinero": 10,
+                "reputacion": -20,
                 "insumos": 0
             }
         }
+    },
+
+    {
+        "id": "carta_023",
+        "fase": "puesto_casa",
+        "min_reputacion": 150,
+        "previo_id": "carta_018",
+        "titulo": "Hacer promocion",
+        "descripcion": "Para que el negocio siga teniendo exito pensas en realizar una promocion de chipas",
+        "imagen": "🎁",
+        "opcion_izquierda": {
+            "texto": "si",
+            "siguiente_id": "carta_020",
+            "impacto": {
+                "dinero": 20,
+                "reputacion": 20,
+                "insumos": -30
+            }
+        },
+        "opcion_derecha": {
+            "texto": "no",
+            "siguiente_id": "carta_020",
+            "impacto": {
+                "dinero": 10,
+                "reputacion": 10,
+                "insumos": -10
+            }
+        }
     }
+
+
 ]
