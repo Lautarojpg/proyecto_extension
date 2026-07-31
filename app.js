@@ -75,14 +75,24 @@ function onEnd() {
     isDragging = false;
 
     const threshold = 100; // Distancia para tomar la decisión
-
+    
     if (currentX < -threshold) {
+        const opcion = cartaActual.opcion_izquierda;
         // Decisión IZQUIERDA (NO)
         actualizarEconomia(cartaActual.opcion_izquierda.impacto);
+        if(opcion.objeto){
+            agregarObjeto(opcion.objeto);
+        }
+
+
         mostrarCarta(cartaActual.opcion_izquierda.siguiente_id);
     } else if (currentX > threshold) {
+        const opcion = cartaActual.opcion_derecha;
         // Decisión DERECHA (SÍ)
         actualizarEconomia(cartaActual.opcion_derecha.impacto);
+        if(opcion.objeto){
+            agregarObjeto(opcion.objeto);
+        }
         mostrarCarta(cartaActual.opcion_derecha.siguiente_id);
     } else {
         // Volver al centro
@@ -91,6 +101,15 @@ function onEnd() {
     }
     currentX = 0;
 }
+
+function agregarObjeto(nombre){
+
+    document
+        .getElementById(nombre)
+        .classList.remove("oculto");
+
+}
+
 // boton de inciar el juego
 document.getElementById("btn-start").onclick = () => {
     document.getElementById("scene-main-menu").style.display="none";

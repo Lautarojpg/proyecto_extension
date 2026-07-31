@@ -33,12 +33,13 @@ body{
     z-index:0;
 }
 
+/*
 #bg-layer img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
-
+*/
 
 /* Oscurece un poquito el fondo para leer mejor */
 #bg-layer::after{
@@ -46,6 +47,37 @@ body{
     position:absolute;
     inset:0;
     background:rgba(0,0,0,.15);
+}
+
+/* ===========================
+   Objetos
+=========================== */
+
+/* Solo el fondo */
+#bg-layer > img:first-child{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.bg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Objetos */
+.objeto{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    pointer-events:none; /* para que no interfiera con el drag de la carta */
+}
+
+.oculto{
+    display:none;
 }
 
 /* ===========================

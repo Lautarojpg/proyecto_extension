@@ -121,6 +121,7 @@
         "imagen": "🎉",
         "opcion_izquierda": {
             "texto": "Mejorar el puesto con un cartel",
+            "objeto": "cartel",
             "siguiente_id": "carta_006",
             "impacto": {
                 "dinero": -20,
@@ -205,6 +206,7 @@
         "imagen": "😟",
         "opcion_izquierda": {
             "texto": "Poner carteles",
+            "objeto": "flyers",
             "siguiente_id": "carta_007",
             "impacto": {
                 "dinero": -15,
