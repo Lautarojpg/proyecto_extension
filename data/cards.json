@@ -188,6 +188,7 @@
         "opcion_derecha": {
             "texto": "Comprar un horno mejor",
             "siguiente_id": "carta_010",
+            "objeto": "hornito",
             "impacto": {
                 "dinero": -40,
                 "reputacion": 15,
@@ -292,6 +293,7 @@
         "opcion_izquierda": {
             "texto": "Contratar a Tomás",
             "siguiente_id": "carta_012",
+            "objeto": "tomas",
             "impacto": {
                 "dinero": -20,
                 "reputacion": 15,
@@ -544,6 +546,7 @@
         "opcion_izquierda": {
             "texto": "Abrir el local cuanto antes",
             "siguiente_id": "carta_021",
+            "objeto": "puesto_city",
             "impacto": {
                 "dinero": -60,
                 "reputacion": 30,
@@ -572,6 +575,7 @@
         "opcion_izquierda": {
             "texto": "Comprar un horno mejor",
             "siguiente_id": "carta_010",
+            "objeto": "hornito",
             "impacto": {
                 "dinero": -30,
                 "reputacion": 20,
@@ -581,6 +585,7 @@
         "opcion_derecha": {
             "texto": "Comprar un horno mejor",
             "siguiente_id": "carta_010",
+            "objeto": "hornito",
             "impacto": {
                 "dinero": -30,
                 "reputacion": 20,
