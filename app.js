@@ -44,6 +44,11 @@ const overlayElem = document.getElementById('choice-overlay');
 
 let startX = 0, currentX = 0, isDragging = false;
 
+// Umbral para que aparezca la vista previa (texto/color) mientras arrastrás
+const PREVIEW_THRESHOLD = 80;
+// Umbral para que se confirme la decisión al soltar (a más alto, más recorrido hace falta)
+const DECISION_THRESHOLD = 160;
+
 function onStart(e) {
     isDragging = true;
     startX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -58,10 +63,10 @@ function onMove(e) {
     cardElem.style.transform = `translate(${currentX}px, 0px) rotate(${rotate}deg)`;
 
     // Texto emergente según dirección
-    if (currentX < -50) {
+    if (currentX < -PREVIEW_THRESHOLD) {
         overlayElem.innerText = cartaActual.opcion_izquierda.texto;
         overlayElem.className = 'choice-overlay choice-left';
-    } else if (currentX > 50) {
+    } else if (currentX > PREVIEW_THRESHOLD) {
         overlayElem.innerText = cartaActual.opcion_derecha.texto;
         overlayElem.className = 'choice-overlay choice-right';
     } else {
@@ -74,9 +79,7 @@ function onEnd() {
     if (!isDragging) return;
     isDragging = false;
 
-    const threshold = 100; // Distancia para tomar la decisión
-    
-    if (currentX < -threshold) {
+    if (currentX < -DECISION_THRESHOLD) {
         const opcion = cartaActual.opcion_izquierda;
         // Decisión IZQUIERDA (NO)
         actualizarEconomia(cartaActual.opcion_izquierda.impacto);
@@ -86,7 +89,7 @@ function onEnd() {
 
 
         mostrarCarta(cartaActual.opcion_izquierda.siguiente_id);
-    } else if (currentX > threshold) {
+    } else if (currentX > DECISION_THRESHOLD) {
         const opcion = cartaActual.opcion_derecha;
         // Decisión DERECHA (SÍ)
         actualizarEconomia(cartaActual.opcion_derecha.impacto);
