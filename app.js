@@ -76,6 +76,13 @@ function actualizarEconomia(impacto) {
     document.getElementById('stat-dinero').innerText = economia.dinero;
     document.getElementById('stat-reputacion').innerText = economia.reputacion;
     document.getElementById('stat-insumos').innerText = economia.insumos;
+
+    const netImpact = (impacto.dinero || 0) + (impacto.reputacion || 0) + (impacto.insumos || 0);
+    if (netImpact > 0) {
+        soundManager.playStatGain();
+    } else if (netImpact < 0) {
+        soundManager.playStatLoss();
+    }
 }
 
 // --- LÓGICA DE SWIPE (Touch / Mouse) ---
@@ -169,15 +176,16 @@ function ejecutarDecision(opcion) {
 }
 
 function agregarObjeto(nombre){
-
-    document
-        .getElementById(nombre)
-        .classList.remove("oculto");
-
+    const elem = document.getElementById(nombre);
+    if (elem) {
+        elem.classList.remove("oculto");
+        soundManager.playUnlockItem();
+    }
 }
 
 // boton de inciar el juego
 document.getElementById("btn-start").onclick = () => {
+    soundManager.playClick();
     document.getElementById("scene-main-menu").style.display="none";
     document.getElementById("stats-bar").style.display="flex";
     document.getElementById("game-container").style.display="flex";
