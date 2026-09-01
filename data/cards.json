@@ -648,6 +648,64 @@
                 "insumos": -10
             }
         }
+    },
+
+    {
+        "id": "game_over_dinero",
+        "fase": "fin",
+        "min_reputacion": 0,
+        "previo_id": null,
+        "titulo": "¡Bancarrota!",
+        "descripcion": "Te quedaste sin dinero para mantener el puesto. Tendrás que cerrar por ahora.",
+        "imagen": "💸",
+        "opcion_izquierda": {
+            "texto": "Volver a intentar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Volver a intentar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        }
+    },
+    {
+        "id": "game_over_reputacion",
+        "fase": "fin",
+        "min_reputacion": 0,
+        "previo_id": null,
+        "titulo": "Nadie quiere tu chipá",
+        "descripcion": "Tu reputación cayó por el piso. Los clientes prefieren cruzar la calle antes que comprar tu chipá.",
+        "imagen": "👎",
+        "opcion_izquierda": {
+            "texto": "Volver a intentar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Volver a intentar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        }
+    },
+    {
+        "id": "game_over",
+        "fase": "fin",
+        "min_reputacion": 0,
+        "previo_id": null,
+        "titulo": "Fin del negocio",
+        "descripcion": "Tomaste malas decisiones que llevaron tu puesto a la ruina. ¡Mejor suerte la próxima vez!",
+        "imagen": "❌",
+        "opcion_izquierda": {
+            "texto": "Reiniciar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Reiniciar",
+            "siguiente_id": "reiniciar",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+        }
     }
 
 

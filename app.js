@@ -15,7 +15,37 @@ async function cargarJuego() {
     mostrarCarta(cartas[0].id);
 }
 
+function volverAlInicio() {
+    // 1. Resetear las estadísticas a los valores iniciales
+    economia = { dinero: 50, reputacion: 50, insumos: 50 };
+    document.getElementById('stat-dinero').innerText = economia.dinero;
+    document.getElementById('stat-reputacion').innerText = economia.reputacion;
+    document.getElementById('stat-insumos').innerText = economia.insumos;
+
+    // 2. Ocultar todos los objetos
+    document.querySelectorAll('.objeto').forEach(obj => {
+        obj.classList.add('oculto');
+    });
+
+    // --- NUEVO: Limpiar los estilos visuales de derrota ---
+    document.getElementById('card').classList.remove("carta-derrota");
+    document.getElementById('bg-layer').classList.remove("fondo-derrota");
+
+    // 3. Preparar la primera carta
+    mostrarCarta(cartas[0].id);
+
+    // 4. Cambiar las pantallas
+    document.getElementById("stats-bar").style.display = "none";
+    document.getElementById("game-container").style.display = "none";
+    document.getElementById("scene-main-menu").style.display = "flex"; 
+}
+
 function mostrarCarta(id) {
+
+    if (id === "reiniciar") {
+        volverAlInicio();
+    }
+
     cartaActual = cartas.find(c => c.id === id) || cartas[0];
 
     document.getElementById('card-title').innerText = cartaActual.titulo;
@@ -26,6 +56,16 @@ function mostrarCarta(id) {
     cardElem.style.transform = `translate(0px, 0px) rotate(0deg)`;
     overlayElem.className = 'choice-overlay';
     overlayElem.innerText = '';
+
+    // --- LÓGICA VISUAL DE DERROTA ---
+    // Si el id incluye "game_over", activamos el modo dramático
+    if (cartaActual.id.includes("game_over")) {
+        cardElem.classList.add("carta-derrota");
+        document.getElementById('bg-layer').classList.add("fondo-derrota");
+    } else {
+        cardElem.classList.remove("carta-derrota");
+        document.getElementById('bg-layer').classList.remove("fondo-derrota");
+    }
 }
 
 function actualizarEconomia(impacto) {
@@ -75,34 +115,57 @@ function onMove(e) {
     }
 }
 
+function verificarDerrota() {
+    if (economia.dinero <= 0) return "game_over_dinero";
+    if (economia.reputacion <= 0) return "game_over_reputacion";
+    return null; // Si devuelve null, significa que no perdió todavía
+}
+
 function onEnd() {
     if (!isDragging) return;
     isDragging = false;
 
     if (currentX < -DECISION_THRESHOLD) {
-        const opcion = cartaActual.opcion_izquierda;
-        // Decisión IZQUIERDA (NO)
-        actualizarEconomia(cartaActual.opcion_izquierda.impacto);
-        if(opcion.objeto){
-            agregarObjeto(opcion.objeto);
-        }
-
-
-        mostrarCarta(cartaActual.opcion_izquierda.siguiente_id);
+        // Decisión IZQUIERDA
+        ejecutarDecision(cartaActual.opcion_izquierda);
     } else if (currentX > DECISION_THRESHOLD) {
-        const opcion = cartaActual.opcion_derecha;
-        // Decisión DERECHA (SÍ)
-        actualizarEconomia(cartaActual.opcion_derecha.impacto);
-        if(opcion.objeto){
-            agregarObjeto(opcion.objeto);
-        }
-        mostrarCarta(cartaActual.opcion_derecha.siguiente_id);
+        // Decisión DERECHA
+        ejecutarDecision(cartaActual.opcion_derecha);
     } else {
-        // Volver al centro
+        // No hizo el swipe lo suficientemente largo, la carta vuelve al centro
         cardElem.style.transform = `translate(0px, 0px) rotate(0deg)`;
         overlayElem.className = 'choice-overlay';
     }
     currentX = 0;
+}
+
+function ejecutarDecision(opcion) {
+    // 1. Si la carta actual era la de derrota (su id siguiente es "reiniciar"), 
+    // lo mandamos al inicio INMEDIATAMENTE y cortamos la función acá.
+    if (opcion.siguiente_id === "reiniciar") {
+        volverAlInicio();
+        return; 
+    }
+
+    // 2. Si es una carta normal, aplicamos los impactos económicos y los objetos
+    if (opcion.impacto) {
+        actualizarEconomia(opcion.impacto);
+    }
+    if (opcion.objeto) {
+        agregarObjeto(opcion.objeto);
+    }
+
+    // 3. Revisamos si esos impactos lo dejaron en bancarrota (0 de dinero o reputación)
+    const idDerrota = verificarDerrota();
+
+    // 4. Decidimos qué carta mostrar:
+    // Si idDerrota tiene texto (ej: "game_over_dinero"), mostramos esa.
+    // Si no perdió (es null), seguimos con la historia normal mostrando el siguiente_id.
+    if (idDerrota) {
+        mostrarCarta(idDerrota);
+    } else {
+        mostrarCarta(opcion.siguiente_id);
+    }
 }
 
 function agregarObjeto(nombre){

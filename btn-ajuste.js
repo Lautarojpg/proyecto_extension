@@ -53,9 +53,3 @@ document.getElementById('toggle-sfx').addEventListener('change', (e) => {
     console.log('SFX activado:', e.target.checked);
 });
 
-// Reiniciar partida
-document.getElementById('btn-restart-game').addEventListener('click', () => {
-    if (confirm('¿Seguro que querés reiniciar la partida?')) {
-        location.reload();
-    }
-});
