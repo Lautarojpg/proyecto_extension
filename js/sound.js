@@ -23,6 +23,9 @@ class SoundManager {
         if (this.audioCtx && this.audioCtx.state === 'suspended') {
             this.audioCtx.resume();
         }
+        if (typeof musicManager !== 'undefined' && musicManager) {
+            musicManager.init(this.audioCtx);
+        }
     }
 
     setVolume(val) {

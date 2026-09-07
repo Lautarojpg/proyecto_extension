@@ -83,16 +83,24 @@
         </div>
         <div class="modal-body">
             <div class="setting-row">
-                <span>🔊 Volumen de Sonido:</span>
+                <span>🎵 Volumen de Música:</span>
                 <div class="volume-control">
-                    <input type="range" id="volume-slider" min="0" max="100" value="80" class="range-slider">
-                    <span id="volume-value" class="volume-badge">80%</span>
+                    <input type="range" id="music-volume-slider" min="0" max="100" value="50" class="range-slider">
+                    <span id="music-volume-value" class="volume-badge">50%</span>
                 </div>
             </div>
             <div class="setting-row">
-                <span>🖥️ Calibración de Pantalla:</span>
-                <div class="calibrate-actions">
-                    <button id="btn-toggle-fullscreen" class="btn-modal-action" title="Pantalla Completa">📺 Pantalla Completa</button>
+                <span>📻 Música 8-Bit (BGM):</span>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-music" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="setting-row">
+                <span>🔊 Volumen SFX:</span>
+                <div class="volume-control">
+                    <input type="range" id="volume-slider" min="0" max="100" value="80" class="range-slider">
+                    <span id="volume-value" class="volume-badge">80%</span>
                 </div>
             </div>
             <div class="setting-row">
@@ -101,6 +109,12 @@
                     <input type="checkbox" id="toggle-sfx" checked>
                     <span class="slider round"></span>
                 </label>
+            </div>
+            <div class="setting-row">
+                <span>🖥️ Calibración de Pantalla:</span>
+                <div class="calibrate-actions">
+                    <button id="btn-toggle-fullscreen" class="btn-modal-action" title="Pantalla Completa">📺 Pantalla Completa</button>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -111,6 +125,7 @@
     
 
     <script src="js/sound.js"></script>
+    <script src="js/music.js"></script>
     <script src="app.js"></script>
     <script src="btn-ajuste.js"></script>
 </body>

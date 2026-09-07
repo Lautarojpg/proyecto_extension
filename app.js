@@ -27,9 +27,12 @@ function volverAlInicio() {
         obj.classList.add('oculto');
     });
 
-    // --- NUEVO: Limpiar los estilos visuales de derrota ---
+    // --- LIMPIAR ESTILOS DE DERROTA Y RESTABLECER MÚSICA ---
     document.getElementById('card').classList.remove("carta-derrota");
     document.getElementById('bg-layer').classList.remove("fondo-derrota");
+    if (typeof musicManager !== 'undefined') {
+        musicManager.setMood('menu');
+    }
 
     // 3. Preparar la primera carta
     mostrarCarta(cartas[0].id);
@@ -40,10 +43,26 @@ function volverAlInicio() {
     document.getElementById("scene-main-menu").style.display = "flex"; 
 }
 
+function actualizarMusicaSegunEstado() {
+    if (typeof musicManager === 'undefined') return;
+    
+    // Calcular el promedio de salud económica actual
+    const saludPromedio = (economia.dinero + economia.reputacion + economia.insumos) / 3;
+
+    if (saludPromedio >= 60) {
+        musicManager.setMood('good'); // Modo Próspero / Mayor alegre
+    } else if (saludPromedio >= 35) {
+        musicManager.setMood('neutral'); // Modo Neutral / Aventura
+    } else {
+        musicManager.setMood('bad'); // Modo Crítico / Tensión menor
+    }
+}
+
 function mostrarCarta(id) {
 
     if (id === "reiniciar") {
         volverAlInicio();
+        return;
     }
 
     cartaActual = cartas.find(c => c.id === id) || cartas[0];
@@ -57,11 +76,13 @@ function mostrarCarta(id) {
     overlayElem.className = 'choice-overlay';
     overlayElem.innerText = '';
 
-    // --- LÓGICA VISUAL DE DERROTA ---
-    // Si el id incluye "game_over", activamos el modo dramático
+    // --- LÓGICA VISUAL Y AUDITIVA DE DERROTA ---
     if (cartaActual.id.includes("game_over")) {
         cardElem.classList.add("carta-derrota");
         document.getElementById('bg-layer').classList.add("fondo-derrota");
+        if (typeof musicManager !== 'undefined') {
+            musicManager.setMood('gameover');
+        }
     } else {
         cardElem.classList.remove("carta-derrota");
         document.getElementById('bg-layer').classList.remove("fondo-derrota");
@@ -80,9 +101,13 @@ function actualizarEconomia(impacto) {
     const netImpact = (impacto.dinero || 0) + (impacto.reputacion || 0) + (impacto.insumos || 0);
     if (netImpact > 0) {
         soundManager.playStatGain();
+        if (typeof musicManager !== 'undefined') musicManager.playGoodStinger();
     } else if (netImpact < 0) {
         soundManager.playStatLoss();
+        if (typeof musicManager !== 'undefined') musicManager.playBadStinger();
     }
+
+    actualizarMusicaSegunEstado();
 }
 
 // --- LÓGICA DE SWIPE (Touch / Mouse) ---
@@ -147,16 +172,21 @@ function onEnd() {
 }
 
 function ejecutarDecision(opcion) {
-    // 1. Si es reiniciar, volvemos al inicio y cortamos
+    // 1. Si es reiniciar (Game Over o Victoria), vuelve al menú y corta acá
     if (opcion.siguiente_id === "reiniciar") {
         volverAlInicio();
         return; 
     }
 
-    // 2. Aplicamos impactos y objetos
+    // 2. Aplicamos impactos, sumando siempre +10 de insumos por turno
+    let impactoFinal = { dinero: 0, reputacion: 0, insumos: 10 }; 
     if (opcion.impacto) {
-        actualizarEconomia(opcion.impacto);
+        impactoFinal.dinero = opcion.impacto.dinero || 0;
+        impactoFinal.reputacion = opcion.impacto.reputacion || 0;
+        impactoFinal.insumos = (opcion.impacto.insumos || 0) + 10; 
     }
+    actualizarEconomia(impactoFinal);
+
     if (opcion.objeto) {
         agregarObjeto(opcion.objeto);
     }
@@ -165,25 +195,27 @@ function ejecutarDecision(opcion) {
     const idDerrota = verificarDerrota();
     if (idDerrota) {
         mostrarCarta(idDerrota);
-        return; // Cortamos acá para que no siga leyendo
+        return;
     }
 
-    // --- NUEVO: 4. Revisar si GANÓ la etapa (Ej: juntó 150 monedas) ---
-    // Chequeamos que tenga 150 y que no esté ya en la carta de próximamente para que no se trabe
+    // 4. Revisar si GANÓ la etapa (Juntó 150 monedas)
     if (economia.dinero >= 150 && cartaActual.id !== "carta_proximamente") {
         mostrarCarta("carta_proximamente");
-        return; // Cortamos acá para mostrar el cartel de victoria
+        return;
     }
 
-    // --- NUEVO: 5. Sistema de Cartas Aleatorias ---
+    // 5. Sistema de Cartas Aleatorias
     if (opcion.siguiente_id === "evento_aleatorio") {
-        // Busca en el JSON todas las cartas que tengan "rand" en su ID
-        const eventos = cartas.filter(c => c.id.includes("rand"));
-        // Elige una al azar
+        // Excluye la carta actual para que no salga dos veces seguidas
+        let eventos = cartas.filter(c => c.id.includes("rand") && c.id !== cartaActual.id);
+        
+        if (eventos.length === 0) {
+            eventos = cartas.filter(c => c.id.includes("rand"));
+        }
+        
         const cartaAlAzar = eventos[Math.floor(Math.random() * eventos.length)];
         mostrarCarta(cartaAlAzar.id);
     } else {
-        // Si no es aleatorio, sigue la historia normal
         mostrarCarta(opcion.siguiente_id);
     }
 }
@@ -196,13 +228,25 @@ function agregarObjeto(nombre){
     }
 }
 
-// boton de inciar el juego
+// Boton de iniciar el juego
 document.getElementById("btn-start").onclick = () => {
     soundManager.playClick();
+    if (typeof musicManager !== 'undefined') {
+        musicManager.start();
+        actualizarMusicaSegunEstado();
+    }
     document.getElementById("scene-main-menu").style.display="none";
     document.getElementById("stats-bar").style.display="flex";
     document.getElementById("game-container").style.display="flex";
 }
+
+// Iniciar música del menú tras interacción inicial
+document.addEventListener('pointerdown', () => {
+    if (typeof musicManager !== 'undefined' && musicManager.isEnabled() && !musicManager.isPlaying) {
+        musicManager.setMood('menu');
+        musicManager.start();
+    }
+}, { once: true });
 
 // Event Listeners
 cardElem.addEventListener('mousedown', onStart);
@@ -214,6 +258,5 @@ document.addEventListener('touchmove', onMove);
 document.addEventListener('touchend', onEnd);
 
 // Iniciar juego
-
 document.getElementById("modal-settings").style.display = "none";
 cargarJuego();

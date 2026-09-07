@@ -757,7 +757,40 @@
         "opcion_izquierda": { "texto": "Comprar ingredientes", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": -30, "reputacion": 0, "insumos": 40 }},
         "opcion_derecha": { "texto": "Comprar ingredientes", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": -30, "reputacion": 0, "insumos": 40 }}
     },
-
+    {
+        "id": "carta_rand_05",
+        "fase": "puesto_casa",
+        "titulo": "¡Hora pico en el barrio!",
+        "descripcion": "Salen todos del trabajo y se armó una fila enorme frente a tu canasto. ¡Quieren chipá calentito!",
+        "imagen": "🏢",
+        "opcion_izquierda": { 
+            "texto": "Atender rápido a todos", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 40, "reputacion": 10, "insumos": -30 }
+        },
+        "opcion_derecha": { 
+            "texto": "Atender tranqui", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 20, "reputacion": 0, "insumos": -15 }
+        }
+    },
+{
+        "id": "carta_rand_06",
+        "fase": "puesto_casa",
+        "titulo": "¡Pedido GIGANTE!",
+        "descripcion": "Frenó un colectivo escolar lleno de chicos que vuelven de excursión. ¡Quieren comprarte todo!",
+        "imagen": "🚌",
+        "opcion_izquierda": { 
+            "texto": "¡A vender todo!", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 60, "reputacion": 20, "insumos": -40 }
+        },
+        "opcion_derecha": { 
+            "texto": "No me alcanza la masa", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 10, "reputacion": -10, "insumos": 0 }
+        }
+    },
     {
         "id": "carta_rand_07",
         "fase": "puesto_casa",
