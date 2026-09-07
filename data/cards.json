@@ -535,32 +535,23 @@
         }
     },
 
-    {
+  {
         "id": "carta_020",
         "fase": "puesto_casa",
         "min_reputacion": 150,
-        "previo_id": ["carta_018", "carta_019"],
-        "titulo": "¡El puesto quedó chico!",
-        "descripcion": "Gracias a todas las buenas decisiones, tu puesto ya no alcanza para atender a tantos clientes. Es momento de pensar en abrir un verdadero local.",
+        "previo_id": ["carta_018", "carta_019", "carta_023"],
+        "titulo": "Un día más en el barrio",
+        "descripcion": "El negocio ya está armado. Ahora solo queda seguir trabajando día a día hasta juntar 150 monedas para abrir el local céntrico.",
         "imagen": "🏪",
         "opcion_izquierda": {
-            "texto": "Abrir el local cuanto antes",
-            "siguiente_id": "carta_021",
-            "objeto": "puesto_city",
-            "impacto": {
-                "dinero": -60,
-                "reputacion": 30,
-                "insumos": 0
-            }
+            "texto": "Empezar a atender",
+            "siguiente_id": "evento_aleatorio",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
         },
         "opcion_derecha": {
-            "texto": "Abrir el local cuanto antes",
-            "siguiente_id": "carta_021",
-            "impacto": {
-                "dinero": -60,
-                "reputacion": 30,
-                "insumos": 0
-            }
+            "texto": "Empezar a atender",
+            "siguiente_id": "evento_aleatorio",
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
         }
     },
 
@@ -568,9 +559,9 @@
         "id": "carta_021",
         "fase": "puesto_casa",
         "min_reputacion": 150,
-        "previo_id": "carta_08",
+        "previo_id": "carta_008",
         "titulo": "¡Tenes dinero Extra!",
-        "descripcion": "Despues de realizar las ventas y ahorrar un poco de dinero, decidis mejorar el horno.",
+        "descripcion": "Después de realizar las ventas y ahorrar un poco de dinero, decidís mejorar el horno.",
         "imagen": "🛒",
         "opcion_izquierda": {
             "texto": "Comprar un horno mejor",
@@ -598,12 +589,12 @@
         "id": "carta_022",
         "fase": "puesto_casa",
         "min_reputacion": 150,
-        "previo_id": "carta_08",
-        "titulo": "La calidad del chipa baja",
-        "descripcion": "El cansancion afecto en la calidad del chipá, y los clientes se quejan de que no es tan bueno como antes.",
+        "previo_id": "carta_013",
+        "titulo": "La calidad del chipá baja",
+        "descripcion": "El cansancio afectó en la calidad del chipá, y los clientes se quejan de que no es tan bueno como antes.",
         "imagen": "📉",
         "opcion_izquierda": {
-            "texto": "descarsar un dia",
+            "texto": "Descansar un día",
             "siguiente_id": "carta_016",
             "impacto": {
                 "dinero": 0,
@@ -612,7 +603,7 @@
             }
         },
         "opcion_derecha": {
-            "texto": "seguir trabajando",
+            "texto": "Seguir trabajando",
             "siguiente_id": "carta_017",
             "impacto": {
                 "dinero": 10,
@@ -622,16 +613,16 @@
         }
     },
 
-    {
+{
         "id": "carta_023",
         "fase": "puesto_casa",
         "min_reputacion": 150,
         "previo_id": "carta_018",
-        "titulo": "Hacer promocion",
-        "descripcion": "Para que el negocio siga teniendo exito pensas en realizar una promocion de chipas",
+        "titulo": "Hacer promoción",
+        "descripcion": "Para que el negocio siga teniendo éxito, pensás en realizar una promoción de chipás.",
         "imagen": "🎁",
         "opcion_izquierda": {
-            "texto": "si",
+            "texto": "Sí, hagámoslo",
             "siguiente_id": "carta_020",
             "impacto": {
                 "dinero": 20,
@@ -640,7 +631,7 @@
             }
         },
         "opcion_derecha": {
-            "texto": "no",
+            "texto": "No, mejor no",
             "siguiente_id": "carta_020",
             "impacto": {
                 "dinero": 10,
@@ -651,62 +642,171 @@
     },
 
     {
-        "id": "game_over_dinero",
+        "id": "carta_rand_01",
+        "fase": "puesto_casa",
+        "titulo": "El Firulais Hambriento",
+        "descripcion": "Un perrito te mira con cara de lástima frente al canasto de chipás.",
+        "imagen": "🐶",
+        "opcion_izquierda": { "texto": "Darle un chipá", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": 0, "reputacion": 20, "insumos": -10 }},
+        "opcion_derecha": { "texto": "Espantarlo", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": 0, "reputacion": -10, "insumos": 0 }}
+    },
+    {
+        "id": "carta_rand_02",
+        "fase": "puesto_casa",
+        "titulo": "¡Qué Calorazo!",
+        "descripcion": "Hace un calor terrible. Pasa un vecino vendiendo tereré bien frío.",
+        "imagen": "🥵",
+        "opcion_izquierda": { "texto": "Comprar tereré", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": -10, "reputacion": 10, "insumos": 0 }},
+        "opcion_derecha": { "texto": "Aguantar el calor", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": 0, "reputacion": -10, "insumos": 0 }}
+    },
+    {
+        "id": "carta_rand_03",
+        "fase": "puesto_casa",
+        "titulo": "Amigos del Cole",
+        "descripcion": "Pasan tus compañeros y te piden que les invites unos chipás.",
+        "imagen": "⚽",
+        "opcion_izquierda": { "texto": "¡Obvio, tomen!", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": 0, "reputacion": 20, "insumos": -20 }},
+        "opcion_derecha": { "texto": "Acá se cobra", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": 20, "reputacion": -10, "insumos": -20 }}
+    },
+    {
+        "id": "carta_rand_04",
+        "fase": "puesto_casa",
+        "titulo": "Reponer Mercadería",
+        "descripcion": "Se te están acabando los insumos para hacer chipá y tenés que ir a comprar.",
+        "imagen": "🧀",
+        "opcion_izquierda": { "texto": "Comprar ingredientes", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": -30, "reputacion": 0, "insumos": 40 }},
+        "opcion_derecha": { "texto": "Comprar ingredientes", "siguiente_id": "evento_aleatorio", "impacto": { "dinero": -30, "reputacion": 0, "insumos": 40 }}
+    },
+
+    {
+        "id": "carta_rand_07",
+        "fase": "puesto_casa",
+        "titulo": "Turista Curioso",
+        "descripcion": "Un turista con cámara de fotos se acerca. Nunca probó el chipá y te pregunta si es rico. ¡Quiere llevar para toda su familia!",
+        "imagen": "📸",
+        "opcion_izquierda": { 
+            "texto": "Armarle un súper combo", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 40, "reputacion": 10, "insumos": -20 }
+        },
+        "opcion_derecha": { 
+            "texto": "Venderle solo uno para probar", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 10, "reputacion": 0, "insumos": -5 }
+        }
+    },
+    {
+        "id": "carta_rand_08",
+        "fase": "puesto_casa",
+        "titulo": "La Tía Generosa",
+        "descripcion": "Pasa tu tía por el puesto. Te da un abrazo gigante, te felicita por lo lindo que está todo y te deja una buena propina.",
+        "imagen": "👵",
+        "opcion_izquierda": { 
+            "texto": "¡Gracias tía!", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 30, "reputacion": 10, "insumos": 0 }
+        },
+        "opcion_derecha": { 
+            "texto": "¡Gracias tía!", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 30, "reputacion": 10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_rand_09",
+        "fase": "puesto_casa",
+        "titulo": "Desayuno de Oficina",
+        "descripcion": "Se baja un oficinista apurado de un auto. Necesita comprar tres docenas urgente para una reunión con sus jefes.",
+        "imagen": "💼",
+        "opcion_izquierda": { 
+            "texto": "¡Preparar todo rápido!", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 50, "reputacion": 10, "insumos": -30 }
+        },
+        "opcion_derecha": { 
+            "texto": "Decirle que no llegás", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": -10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_rand_10",
+        "fase": "puesto_casa",
+        "titulo": "¡Día de Suerte!",
+        "descripcion": "Estás barriendo la vereda cerca del canasto y encontrás un billete grande tirado en el piso. ¡No hay nadie alrededor!",
+        "imagen": "🍀",
+        "opcion_izquierda": { 
+            "texto": "Guardarlo en la caja", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 30, "reputacion": 0, "insumos": 0 }
+        },
+        "opcion_derecha": { 
+            "texto": "Usarlo para comprar masa", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 30 }
+        }
+    },
+    {
+        "id": "carta_rand_11",
+        "fase": "puesto_casa",
+        "titulo": "Show en la Vereda",
+        "descripcion": "Unos músicos se ponen a tocar un chamamé en la esquina. Se junta un montón de gente y a todos les da hambre escuchando.",
+        "imagen": "🎸",
+        "opcion_izquierda": { 
+            "texto": "Venderles a todos", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 40, "reputacion": 20, "insumos": -30 }
+        },
+        "opcion_derecha": { 
+            "texto": "Quedarte mirando el show", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": 10, "insumos": 0 }
+        }
+    },
+
+    {
+        "id": "carta_proximamente",
         "fase": "fin",
-        "min_reputacion": 0,
-        "previo_id": null,
-        "titulo": "¡Bancarrota!",
-        "descripcion": "Te quedaste sin dinero para mantener el puesto. Tendrás que cerrar por ahora.",
-        "imagen": "💸",
+        "titulo": "¡ETAPA COMPLETADA!",
+        "descripcion": "¡Felicidades! Lograste juntar las 150 monedas. El puestito te quedó chico. En la próxima actualización, ¡abrimos el local céntrico!",
+        "imagen": "🎉",
         "opcion_izquierda": {
-            "texto": "Volver a intentar",
+            "texto": "Volver al Menú",
             "siguiente_id": "reiniciar",
             "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
         },
         "opcion_derecha": {
-            "texto": "Volver a intentar",
+            "texto": "Volver al Menú",
             "siguiente_id": "reiniciar",
             "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
         }
+    },
+
+    {
+        "id": "game_over_dinero",
+        "fase": "fin",
+        "titulo": "¡Bancarrota!",
+        "descripcion": "Te quedaste sin dinero para mantener el puesto. Tendrás que cerrar por ahora.",
+        "imagen": "💸",
+        "opcion_izquierda": { "texto": "Volver a intentar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } },
+        "opcion_derecha": { "texto": "Volver a intentar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } }
     },
     {
         "id": "game_over_reputacion",
         "fase": "fin",
-        "min_reputacion": 0,
-        "previo_id": null,
         "titulo": "Nadie quiere tu chipá",
-        "descripcion": "Tu reputación cayó por el piso. Los clientes prefieren cruzar la calle antes que comprar tu chipá.",
+        "descripcion": "Tu reputación cayó por el piso. Los clientes prefieren cruzar la calle antes que comprarte.",
         "imagen": "👎",
-        "opcion_izquierda": {
-            "texto": "Volver a intentar",
-            "siguiente_id": "reiniciar",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
-        },
-        "opcion_derecha": {
-            "texto": "Volver a intentar",
-            "siguiente_id": "reiniciar",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
-        }
+        "opcion_izquierda": { "texto": "Volver a intentar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } },
+        "opcion_derecha": { "texto": "Volver a intentar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } }
     },
     {
         "id": "game_over",
         "fase": "fin",
-        "min_reputacion": 0,
-        "previo_id": null,
         "titulo": "Fin del negocio",
         "descripcion": "Tomaste malas decisiones que llevaron tu puesto a la ruina. ¡Mejor suerte la próxima vez!",
         "imagen": "❌",
-        "opcion_izquierda": {
-            "texto": "Reiniciar",
-            "siguiente_id": "reiniciar",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
-        },
-        "opcion_derecha": {
-            "texto": "Reiniciar",
-            "siguiente_id": "reiniciar",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
-        }
+        "opcion_izquierda": { "texto": "Reiniciar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } },
+        "opcion_derecha": { "texto": "Reiniciar", "siguiente_id": "reiniciar", "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 } }
     }
-
-
 ]

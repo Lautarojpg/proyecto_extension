@@ -147,14 +147,13 @@ function onEnd() {
 }
 
 function ejecutarDecision(opcion) {
-    // 1. Si la carta actual era la de derrota (su id siguiente es "reiniciar"), 
-    // lo mandamos al inicio INMEDIATAMENTE y cortamos la función acá.
+    // 1. Si es reiniciar, volvemos al inicio y cortamos
     if (opcion.siguiente_id === "reiniciar") {
         volverAlInicio();
         return; 
     }
 
-    // 2. Si es una carta normal, aplicamos los impactos económicos y los objetos
+    // 2. Aplicamos impactos y objetos
     if (opcion.impacto) {
         actualizarEconomia(opcion.impacto);
     }
@@ -162,15 +161,29 @@ function ejecutarDecision(opcion) {
         agregarObjeto(opcion.objeto);
     }
 
-    // 3. Revisamos si esos impactos lo dejaron en bancarrota (0 de dinero o reputación)
+    // 3. Revisamos si perdió
     const idDerrota = verificarDerrota();
-
-    // 4. Decidimos qué carta mostrar:
-    // Si idDerrota tiene texto (ej: "game_over_dinero"), mostramos esa.
-    // Si no perdió (es null), seguimos con la historia normal mostrando el siguiente_id.
     if (idDerrota) {
         mostrarCarta(idDerrota);
+        return; // Cortamos acá para que no siga leyendo
+    }
+
+    // --- NUEVO: 4. Revisar si GANÓ la etapa (Ej: juntó 150 monedas) ---
+    // Chequeamos que tenga 150 y que no esté ya en la carta de próximamente para que no se trabe
+    if (economia.dinero >= 150 && cartaActual.id !== "carta_proximamente") {
+        mostrarCarta("carta_proximamente");
+        return; // Cortamos acá para mostrar el cartel de victoria
+    }
+
+    // --- NUEVO: 5. Sistema de Cartas Aleatorias ---
+    if (opcion.siguiente_id === "evento_aleatorio") {
+        // Busca en el JSON todas las cartas que tengan "rand" en su ID
+        const eventos = cartas.filter(c => c.id.includes("rand"));
+        // Elige una al azar
+        const cartaAlAzar = eventos[Math.floor(Math.random() * eventos.length)];
+        mostrarCarta(cartaAlAzar.id);
     } else {
+        // Si no es aleatorio, sigue la historia normal
         mostrarCarta(opcion.siguiente_id);
     }
 }
