@@ -172,29 +172,49 @@ function onEnd() {
 }
 
 function ejecutarDecision(opcion) {
-    // 1. Si la carta actual era la de derrota (su id siguiente es "reiniciar"), 
-    // lo mandamos al inicio INMEDIATAMENTE y cortamos la función acá.
+    // 1. Si es reiniciar (Game Over o Victoria), vuelve al menú y corta acá
     if (opcion.siguiente_id === "reiniciar") {
         volverAlInicio();
         return; 
     }
 
-    // 2. Si es una carta normal, aplicamos los impactos económicos y los objetos
+    // 2. Aplicamos impactos, sumando siempre +10 de insumos por turno
+    let impactoFinal = { dinero: 0, reputacion: 0, insumos: 10 }; 
     if (opcion.impacto) {
-        actualizarEconomia(opcion.impacto);
+        impactoFinal.dinero = opcion.impacto.dinero || 0;
+        impactoFinal.reputacion = opcion.impacto.reputacion || 0;
+        impactoFinal.insumos = (opcion.impacto.insumos || 0) + 10; 
     }
+    actualizarEconomia(impactoFinal);
+
     if (opcion.objeto) {
         agregarObjeto(opcion.objeto);
     }
 
-    // 3. Revisamos si esos impactos lo dejaron en bancarrota (0 de dinero o reputación)
+    // 3. Revisamos si perdió
     const idDerrota = verificarDerrota();
-
-    // 4. Decidimos qué carta mostrar:
-    // Si idDerrota tiene texto (ej: "game_over_dinero"), mostramos esa.
-    // Si no perdió (es null), seguimos con la historia normal mostrando el siguiente_id.
     if (idDerrota) {
         mostrarCarta(idDerrota);
+        return;
+    }
+
+    // 4. Revisar si GANÓ la etapa (Juntó 150 monedas)
+    if (economia.dinero >= 150 && cartaActual.id !== "carta_proximamente") {
+        mostrarCarta("carta_proximamente");
+        return;
+    }
+
+    // 5. Sistema de Cartas Aleatorias
+    if (opcion.siguiente_id === "evento_aleatorio") {
+        // Excluye la carta actual para que no salga dos veces seguidas
+        let eventos = cartas.filter(c => c.id.includes("rand") && c.id !== cartaActual.id);
+        
+        if (eventos.length === 0) {
+            eventos = cartas.filter(c => c.id.includes("rand"));
+        }
+        
+        const cartaAlAzar = eventos[Math.floor(Math.random() * eventos.length)];
+        mostrarCarta(cartaAlAzar.id);
     } else {
         mostrarCarta(opcion.siguiente_id);
     }
