@@ -1,5 +1,86 @@
 [
     {
+        "id": "carta_tut_001",
+        "fase": "tutorial",
+        "min_reputacion": 0,
+        "previo_id": null,
+        "titulo": "¡Bienvenido a tu emprendimiento!",
+        "descripcion": "Para tomar decisiones, deslizá esta carta hacia la izquierda o hacia la derecha. Cada elección afectará tu partida. ¡Probá ahora!",
+        "imagen": "📱",
+        "opcion_izquierda": {
+            "texto": "Deslizar izquierda",
+            "siguiente_id": "carta_tut_002",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": 0,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Deslizar derecha",
+            "siguiente_id": "carta_tut_002",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": 0,
+                "insumos": 0
+            }
+        }
+    },
+    {
+        "id": "carta_tut_002",
+        "fase": "tutorial",
+        "min_reputacion": 0,
+        "previo_id": "carta_tut_001",
+        "titulo": "Cuidá tus recursos",
+        "descripcion": "Arriba vas a ver tu Dinero, Reputación e Insumos. Si te quedás sin plata o tu reputación cae a cero, ¡perdés! Mantené el equilibrio.",
+        "imagen": "📊",
+        "opcion_izquierda": {
+            "texto": "Entendido",
+            "siguiente_id": "carta_tut_003",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": 0,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "¡A jugar!",
+            "siguiente_id": "carta_tut_003",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": 0,
+                "insumos": 0
+            }
+        }
+    },
+    {
+        "id": "carta_tut_003",
+        "fase": "tutorial",
+        "min_reputacion": 0,
+        "previo_id": "carta_tut_002",
+        "titulo": "Tu primera decisión",
+        "descripcion": "Antes de abrir el puesto, tu abuela te ofrece una ayuda para empezar. ¿Qué preferís aceptar?",
+        "imagen": "👵",
+        "opcion_izquierda": {
+            "texto": "Unos pesos (Dinero)",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": 15,
+                "reputacion": 0,
+                "insumos": 0
+            }
+        },
+        "opcion_derecha": {
+            "texto": "Queso y almidón (Insumos)",
+            "siguiente_id": "carta_001",
+            "impacto": {
+                "dinero": 0,
+                "reputacion": 0,
+                "insumos": 20
+            }
+        }
+    },
+    {
         "id": "carta_001",
         "fase": "puesto_casa",
         "min_reputacion": 0,
@@ -26,7 +107,6 @@
             }
         }
     },
-
     {
         "id": "carta_002",
         "fase": "puesto_casa",
