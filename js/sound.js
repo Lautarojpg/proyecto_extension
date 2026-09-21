@@ -6,10 +6,9 @@ class SoundManager {
         
         // Cargar configuración guardada o usar valores por defecto
         const savedVolume = localStorage.getItem('sfx_volume');
-        const savedEnabled = localStorage.getItem('sfx_enabled');
         
         this.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.8;
-        this.enabled = savedEnabled !== null ? savedEnabled === 'true' : true;
+        this.enabled = true;
     }
 
     // Inicializar el AudioContext tras la interacción del usuario
@@ -44,7 +43,7 @@ class SoundManager {
     }
 
     isEnabled() {
-        return this.enabled;
+        return this.volume > 0;
     }
 
     // --- EFECTOS DE SONIDO ESPECÍFICOS ---

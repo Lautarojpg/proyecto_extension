@@ -159,9 +159,11 @@ function onEnd() {
 
     if (currentX < -DECISION_THRESHOLD) {
         // Decisión IZQUIERDA
+        if (typeof soundManager !== 'undefined') soundManager.playSwipeLeft();
         ejecutarDecision(cartaActual.opcion_izquierda);
     } else if (currentX > DECISION_THRESHOLD) {
         // Decisión DERECHA
+        if (typeof soundManager !== 'undefined') soundManager.playSwipeRight();
         ejecutarDecision(cartaActual.opcion_derecha);
     } else {
         // No hizo el swipe lo suficientemente largo, la carta vuelve al centro

@@ -6,10 +6,9 @@ class MusicManager8Bit {
         
         // Guardar/cargar configuración de volumen y estado
         const savedVolume = localStorage.getItem('bgm_volume');
-        const savedEnabled = localStorage.getItem('bgm_enabled');
         
         this.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.5;
-        this.enabled = savedEnabled !== null ? savedEnabled === 'true' : true;
+        this.enabled = true;
         
         this.currentMood = 'menu'; // 'menu', 'good', 'neutral', 'bad', 'gameover'
         this.isPlaying = false;
@@ -90,6 +89,11 @@ class MusicManager8Bit {
     setVolume(val) {
         this.volume = Math.max(0, Math.min(1, val));
         localStorage.setItem('bgm_volume', this.volume);
+        if (this.volume <= 0) {
+            this.stop();
+        } else if (!this.isPlaying) {
+            this.start();
+        }
     }
 
     getVolume() {
@@ -107,7 +111,7 @@ class MusicManager8Bit {
     }
 
     isEnabled() {
-        return this.enabled;
+        return this.volume > 0;
     }
 
     setMood(mood) {
@@ -269,7 +273,8 @@ class MusicManager8Bit {
 
     // Acento armónico 8-bit para decisión BUENA
     playGoodStinger() {
-        if (!this.enabled || this.volume <= 0) return;
+        const sfxVol = typeof soundManager !== 'undefined' ? soundManager.getVolume() : this.volume;
+        if (sfxVol <= 0) return;
         this.init();
         if (!this.audioCtx) return;
 
@@ -285,7 +290,7 @@ class MusicManager8Bit {
             osc.frequency.setValueAtTime(freq, time);
 
             const duration = i === stingerNotes.length - 1 ? 0.2 : 0.08;
-            gain.gain.setValueAtTime(0.25 * this.volume, time);
+            gain.gain.setValueAtTime(0.25 * sfxVol, time);
             gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
 
             osc.connect(gain);
@@ -298,7 +303,8 @@ class MusicManager8Bit {
 
     // Acento armónico 8-bit para decisión MALA
     playBadStinger() {
-        if (!this.enabled || this.volume <= 0) return;
+        const sfxVol = typeof soundManager !== 'undefined' ? soundManager.getVolume() : this.volume;
+        if (sfxVol <= 0) return;
         this.init();
         if (!this.audioCtx) return;
 
@@ -314,7 +320,7 @@ class MusicManager8Bit {
             osc.frequency.setValueAtTime(freq, time);
 
             const duration = i === stingerNotes.length - 1 ? 0.25 : 0.09;
-            gain.gain.setValueAtTime(0.22 * this.volume, time);
+            gain.gain.setValueAtTime(0.22 * sfxVol, time);
             gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
 
             osc.connect(gain);
