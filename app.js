@@ -1,5 +1,7 @@
 let cartas = [];
 let cartaActual = null;
+let siguienteCartaHistoria = null;
+let empleadosContratados = [];
 
 // Puntuación inicial
 let economia = {
@@ -16,6 +18,8 @@ async function cargarJuego() {
 }
 
 function volverAlInicio() {
+    siguienteCartaHistoria = null;
+    empleadosContratados = [];
     // 1. Resetear las estadísticas a los valores iniciales
     economia = { dinero: 50, reputacion: 50, insumos: 50 };
     document.getElementById('stat-dinero').innerText = economia.dinero;
@@ -200,33 +204,91 @@ function ejecutarDecision(opcion) {
         return;
     }
 
-    // 4. Revisar si GANÓ la etapa (Juntó 150 monedas)
-    if (economia.dinero >= 150 && cartaActual.id !== "carta_proximamente") {
+    // 4. Revisar avance de etapa según dinero
+    const esFaseCentro = cartaActual.fase === "local_centro";
+    if (!esFaseCentro && economia.dinero >= 150 && !cartaActual.id.includes("rand") && !cartaActual.id.includes("tut")) {
+        mostrarCarta("carta_024");
+        return;
+    } else if (esFaseCentro && economia.dinero >= 300 && cartaActual.id !== "carta_proximamente") {
         mostrarCarta("carta_proximamente");
         return;
     }
 
-    // 5. Sistema de Cartas Aleatorias
-    if (opcion.siguiente_id === "evento_aleatorio") {
-        // Excluye la carta actual para que no salga dos veces seguidas
-        let eventos = cartas.filter(c => c.id.includes("rand") && c.id !== cartaActual.id);
-        
-        if (eventos.length === 0) {
-            eventos = cartas.filter(c => c.id.includes("rand"));
+    // 5. Sistema de Cartas Aleatorias e Intercalado
+    const esCartaActualAleatoria = cartaActual.id.includes("rand");
+    const esTutorial = cartaActual.id.includes("tut");
+
+    // Resolver IDs especiales de empleados
+    let idDestino = opcion.siguiente_id;
+    if (idDestino === "iniciar_conflictos") {
+        idDestino = obtenerPrimerConflictosEmpleado();
+    } else if (idDestino === "siguiente_empleado") {
+        idDestino = obtenerSegundoConflictosEmpleado();
+    }
+
+    if (esCartaActualAleatoria) {
+        // Si veníamos de una carta aleatoria
+        if (siguienteCartaHistoria) {
+            // Reanudar la carta de la historia principal que estaba en espera
+            const proximaId = siguienteCartaHistoria;
+            siguienteCartaHistoria = null;
+            mostrarCarta(proximaId);
+        } else if (idDestino === "evento_aleatorio") {
+            // Si no hay carta de historia en cola (ej. fase final), mostrar otro evento aleatorio
+            mostrarCarta(obtenerCartaAleatoria().id);
+        } else {
+            mostrarCarta(idDestino);
         }
-        
-        const cartaAlAzar = eventos[Math.floor(Math.random() * eventos.length)];
-        mostrarCarta(cartaAlAzar.id);
     } else {
-        mostrarCarta(opcion.siguiente_id);
+        // Carta de la historia principal o tutorial
+        if (idDestino === "evento_aleatorio") {
+            mostrarCarta(obtenerCartaAleatoria().id);
+        } else {
+            // Probabilidad del 10% de activar un evento aleatorio antes de seguir la historia principal
+            const PROBABILIDAD_EVENTO_RANDOM = 0.10;
+            const esEmpleadoConflict = cartaActual.id.includes("mat") || cartaActual.id.includes("nic") || cartaActual.id.includes("mar") || cartaActual.id.includes("mia");
+            if (!esTutorial && !esEmpleadoConflict && Math.random() < PROBABILIDAD_EVENTO_RANDOM) {
+                siguienteCartaHistoria = idDestino;
+                mostrarCarta(obtenerCartaAleatoria().id);
+            } else {
+                mostrarCarta(idDestino);
+            }
+        }
     }
 }
 
+function obtenerPrimerConflictosEmpleado() {
+    const primerEmp = empleadosContratados[0];
+    if (primerEmp === "mateo") return "carta_mat_001";
+    if (primerEmp === "martin") return "carta_mar_001";
+    return "carta_proximamente";
+}
+
+function obtenerSegundoConflictosEmpleado() {
+    const segundoEmp = empleadosContratados[1];
+    if (segundoEmp === "nico") return "carta_nic_001";
+    if (segundoEmp === "mia") return "carta_mia_001";
+    return "carta_proximamente";
+}
+
+function obtenerCartaAleatoria() {
+    let eventos = cartas.filter(c => c.id.includes("rand") && c.id !== cartaActual.id);
+    if (eventos.length === 0) {
+        eventos = cartas.filter(c => c.id.includes("rand"));
+    }
+    return eventos[Math.floor(Math.random() * eventos.length)];
+}
+
 function agregarObjeto(nombre){
+    if (["mateo", "martin", "nico", "mia"].includes(nombre)) {
+        if (!empleadosContratados.includes(nombre)) {
+            empleadosContratados.push(nombre);
+        }
+    }
     const elem = document.getElementById(nombre);
     if (elem) {
         elem.classList.remove("oculto");
-        soundManager.playUnlockItem();
+        if (typeof soundManager !== 'undefined') soundManager.playUnlockItem();
     }
 }
 

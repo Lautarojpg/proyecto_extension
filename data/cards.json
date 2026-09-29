@@ -621,17 +621,17 @@
         "min_reputacion": 150,
         "previo_id": ["carta_018", "carta_019", "carta_023"],
         "titulo": "Un día más en el barrio",
-        "descripcion": "El negocio ya está armado. Ahora solo queda seguir trabajando día a día hasta juntar 150 monedas para abrir el local céntrico.",
+        "descripcion": "El negocio ya está armado. ¡Lograste juntar el dinero para abrir tu primer local céntrico!",
         "imagen": "🏪",
         "opcion_izquierda": {
-            "texto": "Empezar a atender",
-            "siguiente_id": "evento_aleatorio",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+            "texto": "Abrir el local en el centro",
+            "siguiente_id": "carta_024",
+            "impacto": { "dinero": 0, "reputacion": 10, "insumos": 0 }
         },
         "opcion_derecha": {
-            "texto": "Empezar a atender",
-            "siguiente_id": "evento_aleatorio",
-            "impacto": { "dinero": 0, "reputacion": 0, "insumos": 0 }
+            "texto": "Abrir el local en el centro",
+            "siguiente_id": "carta_024",
+            "impacto": { "dinero": 0, "reputacion": 10, "insumos": 0 }
         }
     },
 
@@ -722,8 +722,847 @@
     },
 
     {
+        "id": "carta_024",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_020",
+        "titulo": "Abriste un local en el centro",
+        "descripcion": "Juntaste el dinero necesario y diste el gran paso: ¡abriste tu primer local en el centro de la ciudad! ¿Por dónde vas a empezar?",
+        "imagen": "🏪",
+        "opcion_izquierda": {
+            "texto": "Decorar el local",
+            "siguiente_id": "carta_025",
+            "impacto": { "dinero": -30, "reputacion": 20, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Volver a llamar a Tomás",
+            "siguiente_id": "carta_026",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": 10 }
+        }
+    },
+    {
+        "id": "carta_025",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_024",
+        "titulo": "¡El local quedó hermoso!",
+        "descripcion": "Las luces, los colores y la marquesina le dan una personalidad única a la chiporería. ¿Qué detalle querés agregar?",
+        "imagen": "✨",
+        "opcion_izquierda": {
+            "texto": "Comprar una mascota",
+            "siguiente_id": "carta_027",
+            "impacto": { "dinero": -20, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Poner un cartel gigante",
+            "siguiente_id": "carta_028",
+            "impacto": { "dinero": -25, "reputacion": 20, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_026",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_024",
+        "titulo": "Tomás viene a salvarte",
+        "descripcion": "Tu viejo amigo Tomás aparece listo para darte una mano en esta nueva etapa del negocio. ¿Qué tarea le asignás?",
+        "imagen": "🤝",
+        "opcion_izquierda": {
+            "texto": "Encargar la atención a los clientes",
+            "siguiente_id": "carta_033",
+            "impacto": { "dinero": 10, "reputacion": 15, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Encargar la preparación de la masa",
+            "siguiente_id": "carta_034",
+            "impacto": { "dinero": 0, "reputacion": -10, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_027",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_025",
+        "titulo": "¡La mascota se vuelve famosa!",
+        "descripcion": "El perrito del local saluda a todos los clientes y se convierte en la sensación del centro.",
+        "imagen": "🐶",
+        "opcion_izquierda": {
+            "texto": "Comprar mercadería",
+            "siguiente_id": "carta_029",
+            "impacto": { "dinero": -30, "reputacion": 5, "insumos": 35 }
+        },
+        "opcion_derecha": {
+            "texto": "Crear redes a la mascota del local",
+            "siguiente_id": "carta_030",
+            "impacto": { "dinero": -15, "reputacion": 25, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_028",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_025",
+        "titulo": "El cartel llamó mucha gente",
+        "descripcion": "El enorme cartel luminoso brilla de noche y llama la atención de una multitud curiosa.",
+        "imagen": "🪧",
+        "opcion_izquierda": {
+            "texto": "Circular por el local",
+            "siguiente_id": "carta_030",
+            "impacto": { "dinero": 20, "reputacion": 10, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_029",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_027",
+        "titulo": "La mercancía no tuvo el éxito que esperabas",
+        "descripcion": "Compraste un gran stock de productos adicionales, pero la demanda no fue la esperada.",
+        "imagen": "📦",
+        "opcion_izquierda": {
+            "texto": "Bajar el precio",
+            "siguiente_id": "carta_031",
+            "impacto": { "dinero": 15, "reputacion": -10, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Comprar mercadería",
+            "siguiente_id": "carta_030",
+            "impacto": { "dinero": -20, "reputacion": 10, "insumos": 20 }
+        }
+    },
+    {
+        "id": "carta_030",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_027", "carta_028", "carta_029", "carta_031"],
+        "titulo": "El local está explotado",
+        "descripcion": "Hay filas largas afuera del local. Las ventas explotan y la gente exige ser atendida más rápido.",
+        "imagen": "🔥",
+        "opcion_izquierda": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": 30, "reputacion": 15, "insumos": -25 }
+        },
+        "opcion_derecha": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": 30, "reputacion": 15, "insumos": -25 }
+        }
+    },
+    {
+        "id": "carta_031",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_029",
+        "titulo": "Se vende y recuperás algo de plata",
+        "descripcion": "Al hacer ofertas especiales, la gente empieza a comprar la mercadería guardada.",
+        "imagen": "💵",
+        "opcion_izquierda": {
+            "texto": "Aceptar la pérdida",
+            "siguiente_id": "carta_030",
+            "impacto": { "dinero": 10, "reputacion": 5, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar vendiendo a menor nivel",
+            "siguiente_id": "carta_030",
+            "impacto": { "dinero": 15, "reputacion": 0, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_032",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_028", "carta_030", "carta_038", "carta_041"],
+        "titulo": "Elegir empleados",
+        "descripcion": "Pusiste un cartel de búsqueda laboral. Llegan los primeros postulantes a la entrevista.",
+        "imagen": "💼",
+        "opcion_izquierda": {
+            "texto": "Contratar a Mateo",
+            "siguiente_id": "carta_042",
+            "objeto": "mateo",
+            "impacto": { "dinero": -20, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Contratar a Martín",
+            "siguiente_id": "carta_042",
+            "objeto": "martin",
+            "impacto": { "dinero": -20, "reputacion": 15, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_033",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_026",
+        "titulo": "Un cliente te recomienda redes al local",
+        "descripcion": "Un cliente contento con la atención te sugiere que abras cuentas en redes sociales para mostrar los chipás.",
+        "imagen": "📲",
+        "opcion_izquierda": {
+            "texto": "Hacerlas vos",
+            "siguiente_id": "carta_035",
+            "impacto": { "dinero": -10, "reputacion": 20, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Seguir Trabajando",
+            "siguiente_id": "carta_036",
+            "impacto": { "dinero": 0, "reputacion": 5, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_034",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_026",
+        "titulo": "Tomás hizo un desastre",
+        "descripcion": "Tomás se confundió de ingrediente y la masa quedó con una textura inesperada.",
+        "imagen": "🤦‍♂️",
+        "opcion_izquierda": {
+            "texto": "Limpiar y preparar otra tanda",
+            "siguiente_id": "carta_036",
+            "impacto": { "dinero": -15, "reputacion": 5, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Venderlos igual",
+            "siguiente_id": "carta_037",
+            "impacto": { "dinero": 10, "reputacion": -10, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_035",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_033", "carta_036"],
+        "titulo": "Salen perfectos",
+        "descripcion": "Los chipás salen del horno doraditos, humeantes y súper crujientes. ¡Récord de ventas!",
+        "imagen": "🥖",
+        "opcion_izquierda": {
+            "texto": "Dejar que Tomás intente una vez más",
+            "siguiente_id": "carta_038",
+            "impacto": { "dinero": 15, "reputacion": 15, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Que Tomás atienda y vos en la cocina",
+            "siguiente_id": "carta_041",
+            "impacto": { "dinero": 20, "reputacion": 10, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_036",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_033", "carta_034"],
+        "titulo": "Preparar otra tanda",
+        "descripcion": "Decidís limpiar las bandejas y amasar una nueva tanda con cuidado.",
+        "imagen": "🥣",
+        "opcion_izquierda": {
+            "texto": "Hacerlas vos",
+            "siguiente_id": "carta_035",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Dejar que Tomás intente",
+            "siguiente_id": "carta_038",
+            "impacto": { "dinero": 0, "reputacion": 15, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_037",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_034",
+        "titulo": "Algunos clientes dijeron que les encantó",
+        "descripcion": "Para tu sorpresa, a varios clientes les gustó el toque especial de la masa improvisada.",
+        "imagen": "😲",
+        "opcion_izquierda": {
+            "texto": "Ofrecer la nueva receta",
+            "siguiente_id": "carta_039",
+            "impacto": { "dinero": 25, "reputacion": 20, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Volver a atención normal",
+            "siguiente_id": "carta_040",
+            "impacto": { "dinero": 10, "reputacion": 0, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_038",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_035", "carta_036"],
+        "titulo": "Tomás Aprendió",
+        "descripcion": "Con la práctica diaria, Tomás le agarró la mano al ritmo del negocio.",
+        "imagen": "🎓",
+        "opcion_izquierda": {
+            "texto": "Ofrecer la nueva receta",
+            "siguiente_id": "carta_039",
+            "impacto": { "dinero": 20, "reputacion": 20, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Convencer de que siga practicando",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_039",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_037", "carta_038"],
+        "titulo": "La nueva receta es un éxito",
+        "descripcion": "La nueva receta se convierte en el producto estrella del local céntrico.",
+        "imagen": "⭐",
+        "opcion_izquierda": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_041",
+            "impacto": { "dinero": 30, "reputacion": 25, "insumos": -20 }
+        },
+        "opcion_derecha": {
+            "texto": "Volver a atención normal",
+            "siguiente_id": "carta_040",
+            "impacto": { "dinero": 15, "reputacion": 5, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_040",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_037", "carta_039"],
+        "titulo": "El día termina sin pena ni gloria",
+        "descripcion": "Fue un día tranquilo en el local. Cumpliste con las ventas diarias.",
+        "imagen": "🌆",
+        "opcion_izquierda": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_041",
+            "impacto": { "dinero": 10, "reputacion": 0, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_041",
+            "impacto": { "dinero": 10, "reputacion": 0, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_041",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": ["carta_035", "carta_039", "carta_040"],
+        "titulo": "Con Tomás y vos no dan abasto",
+        "descripcion": "Hay demasiados pedidos. Ambos están exhaustos y necesitan refuerzos.",
+        "imagen": "🏃‍♂️",
+        "opcion_izquierda": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": 15, "reputacion": -5, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Buscar empleados",
+            "siguiente_id": "carta_032",
+            "impacto": { "dinero": 15, "reputacion": -5, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_042",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_032",
+        "titulo": "Elegir empleados (Paso 2)",
+        "descripcion": "Tenés la primera incorporación. Ahora necesitás una persona más para el turno tarde.",
+        "imagen": "👥",
+        "opcion_izquierda": {
+            "texto": "Contratar a Nico",
+            "siguiente_id": "carta_043",
+            "objeto": "nico",
+            "impacto": { "dinero": -20, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Contratar a Mía",
+            "siguiente_id": "carta_043",
+            "objeto": "mia",
+            "impacto": { "dinero": -20, "reputacion": 15, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_043",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "previo_id": "carta_042",
+        "titulo": "El trabajo es muchísimo más productivo",
+        "descripcion": "¡El equipo está completo! Con la ayuda de todos, la chiporería del centro empieza su día a día con nuevos desafíos.",
+        "imagen": "🏆",
+        "opcion_izquierda": {
+            "texto": "Seguir vendiendo",
+            "siguiente_id": "iniciar_conflictos",
+            "impacto": { "dinero": 40, "reputacion": 25, "insumos": -20 }
+        },
+        "opcion_derecha": {
+            "texto": "Aprovechar y descansar",
+            "siguiente_id": "iniciar_conflictos",
+            "impacto": { "dinero": 20, "reputacion": 15, "insumos": 0 }
+        }
+    },
+
+    {
+        "id": "carta_mat_001",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mateo llega a su primer día de trabajo",
+        "descripcion": "Mateo llega al local entusiasmado pero un poco desorientado. ¿Dónde lo ponés a trabajar?",
+        "imagen": "👨‍🍳",
+        "opcion_izquierda": {
+            "texto": "Ponerlo a atender",
+            "siguiente_id": "carta_mat_002",
+            "impacto": { "dinero": 10, "reputacion": -5, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Ponerlo a cocinar",
+            "siguiente_id": "carta_mat_003",
+            "impacto": { "dinero": -10, "reputacion": 5, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_mat_002",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mateo atiende muy lento",
+        "descripcion": "Mateo se traba con la caja registradora y se arma fila en el mostrador. Los clientes se impacientan.",
+        "imagen": "⏳",
+        "opcion_izquierda": {
+            "texto": "Retarlo",
+            "siguiente_id": "carta_mat_004",
+            "impacto": { "dinero": 0, "reputacion": -15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Tener paciencia",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": 10, "reputacion": 10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_mat_003",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Masa cremosa",
+        "descripcion": "Mateo le puso demasiada leche a la masa y quedó súper líquida y cremosa. No se pueden armar los chipás.",
+        "imagen": "🥣",
+        "opcion_izquierda": {
+            "texto": "Dejar que la tire",
+            "siguiente_id": "carta_mat_006",
+            "impacto": { "dinero": -20, "reputacion": -5, "insumos": -20 }
+        },
+        "opcion_derecha": {
+            "texto": "Moverla con paciencia y corregir",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": 0, "reputacion": 10, "insumos": 10 }
+        }
+    },
+    {
+        "id": "carta_mat_004",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Se ofende y se olvida del horno",
+        "descripcion": "Al retarlo, Mateo se puso triste y distraído. Una tanda entera se le empieza a quemar en el horno.",
+        "imagen": "🧯",
+        "opcion_izquierda": {
+            "texto": "Rescatarlos a tiempo",
+            "siguiente_id": "carta_mat_007",
+            "impacto": { "dinero": 5, "reputacion": -10, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Tirarlos y empezar de nuevo",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": -15, "reputacion": 5, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_mat_005",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mateo aprende a atender",
+        "descripcion": "Con tus consejos y un poco de práctica, Mateo empieza a tomarle la mano al ritmo del negocio.",
+        "imagen": "🎓",
+        "opcion_izquierda": {
+            "texto": "Felicitarlo por su esfuerzo",
+            "siguiente_id": "carta_mat_008",
+            "impacto": { "dinero": 15, "reputacion": 20, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Dejarlo solo a cargo",
+            "siguiente_id": "carta_mat_008",
+            "impacto": { "dinero": 25, "reputacion": 10, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_mat_006",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Se atolondra y rompe algo",
+        "descripcion": "Al intentar limpiar rápido la masa derramada, Mateo pasa a llevar un frasco y se rompe en el piso.",
+        "imagen": "💥",
+        "opcion_izquierda": {
+            "texto": "Ayudarlo a limpiar",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Decirle que tenga más cuidado",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": -10, "reputacion": 0, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_mat_007",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mala atención de parte de Mateo",
+        "descripcion": "Mateo atiende a los clientes con cara larga tras el incidente del horno.",
+        "imagen": "🙁",
+        "opcion_izquierda": {
+            "texto": "Atender vos",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": 10, "reputacion": 10, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Explicarle cómo atender",
+            "siguiente_id": "carta_mat_005",
+            "impacto": { "dinero": 5, "reputacion": 15, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_mat_008",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mateo sigue mejorando",
+        "descripcion": "Mateo demostró que con paciencia y buena onda se convierte en un pilar del negocio.",
+        "imagen": "⭐",
+        "opcion_izquierda": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 20, "reputacion": 15, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 20, "reputacion": 15, "insumos": -10 }
+        }
+    },
+
+    {
+        "id": "carta_nic_001",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Nico llega a su primer día de trabajo",
+        "descripcion": "Nico llega con energía pero con una actitud un poco acelerada. ¿Qué rol le das?",
+        "imagen": "⚡",
+        "opcion_izquierda": {
+            "texto": "Ponerlo a atender",
+            "siguiente_id": "carta_nic_002",
+            "impacto": { "dinero": 15, "reputacion": -10, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Ponerlo a cocinar",
+            "siguiente_id": "carta_nic_003",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_nic_002",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Nico atiende apurado y seco",
+        "descripcion": "Nico despacha rápido a la gente pero les habla sin decir 'por favor' ni 'gracias'. Los vecinos se sorprenden.",
+        "imagen": "😒",
+        "opcion_izquierda": {
+            "texto": "Explicarle amablemente",
+            "siguiente_id": "carta_nic_004",
+            "impacto": { "dinero": 5, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Retarlo fuerte",
+            "siguiente_id": "carta_nic_005",
+            "impacto": { "dinero": 0, "reputacion": -20, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_nic_003",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Masa blanda y tierna",
+        "descripcion": "Nico amasó con rapidez y logró una consistencia súper suave que se hornea rapidísimo.",
+        "imagen": "🥖",
+        "opcion_izquierda": {
+            "texto": "Felicitarlo por el sabor",
+            "siguiente_id": "carta_nic_006",
+            "impacto": { "dinero": 25, "reputacion": 20, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Decirle que le falta cocción",
+            "siguiente_id": "carta_nic_004",
+            "impacto": { "dinero": 5, "reputacion": 5, "insumos": -5 }
+        }
+    },
+    {
+        "id": "carta_nic_004",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Nico escucha tu consejo",
+        "descripcion": "Nico entiende que la buena atención es la clave para que la gente vuelva a comprar.",
+        "imagen": "💡",
+        "opcion_izquierda": {
+            "texto": "Darle otra oportunidad en caja",
+            "siguiente_id": "carta_nic_007",
+            "impacto": { "dinero": 20, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Pasarlo a la cocina",
+            "siguiente_id": "carta_nic_006",
+            "impacto": { "dinero": 15, "reputacion": 10, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_nic_005",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Nico se enoja y atiende peor",
+        "descripcion": "Al retarlo en público, Nico se pone a la defensiva y atiende de mala gana.",
+        "imagen": "😠",
+        "opcion_izquierda": {
+            "texto": "Hablar a solas con él",
+            "siguiente_id": "carta_nic_004",
+            "impacto": { "dinero": 0, "reputacion": 10, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Mandarlo a descansar",
+            "siguiente_id": "carta_nic_007",
+            "impacto": { "dinero": -10, "reputacion": 5, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_nic_006",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Masa perfecta de Nico",
+        "descripcion": "Nico encontró el punto exacto de la masa. La gente felicita la rapidez y la calidad.",
+        "imagen": "🏆",
+        "opcion_izquierda": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 20, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 20, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_nic_007",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Nico mejora su atención",
+        "descripcion": "Nico aprendió a sonreír y a ser amable sin perder la rapidez. ¡Un éxito!",
+        "imagen": "✨",
+        "opcion_izquierda": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 25, "reputacion": 25, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 25, "reputacion": 25, "insumos": -10 }
+        }
+    },
+
+    {
+        "id": "carta_mar_001",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Martín llega a su primer día de trabajo",
+        "descripcion": "Martín es conversador, simpático y le encanta socializar. ¿Dónde lo ubicás?",
+        "imagen": "😊",
+        "opcion_izquierda": {
+            "texto": "Ponerlo a atender",
+            "siguiente_id": "carta_mar_002",
+            "impacto": { "dinero": 15, "reputacion": 20, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Ponerlo a cocinar",
+            "siguiente_id": "carta_mar_003",
+            "impacto": { "dinero": -10, "reputacion": 5, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_mar_002",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Martín es super simpático",
+        "descripcion": "Martín charla con cada cliente y todos se van sonriendo, pero la fila no avanza muy rápido.",
+        "imagen": "💬",
+        "opcion_izquierda": {
+            "texto": "Dejarlo en el mostrador",
+            "siguiente_id": "carta_mar_004",
+            "impacto": { "dinero": 20, "reputacion": 25, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Pedirle que sea más rápido",
+            "siguiente_id": "carta_mar_005",
+            "impacto": { "dinero": 15, "reputacion": 5, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_mar_003",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Martín hace la masa muy pesada",
+        "descripcion": "En la cocina, Martín se distrae hablando y le puso queso de más, dejando los chipás pesados.",
+        "imagen": "⚖️",
+        "opcion_izquierda": {
+            "texto": "Corregir la receta",
+            "siguiente_id": "carta_mar_004",
+            "impacto": { "dinero": 0, "reputacion": 15, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Venderla igual",
+            "siguiente_id": "carta_mar_005",
+            "impacto": { "dinero": 15, "reputacion": -10, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_mar_004",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Los clientes aman a Martín",
+        "descripcion": "Martín se convierte en el personaje más querido del centro. La gente viene solo para charlar con él.",
+        "imagen": "❤️",
+        "opcion_izquierda": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 30, "insumos": -15 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 30, "insumos": -15 }
+        }
+    },
+    {
+        "id": "carta_mar_005",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Martín se distrae hablando",
+        "descripcion": "Aunque atiende bien, la fila se alarga porque se pone a contar anécdotas con los vecinos.",
+        "imagen": "😅",
+        "opcion_izquierda": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 15, "reputacion": 15, "insumos": -10 }
+        },
+        "opcion_derecha": {
+            "texto": "Continuar con la jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 15, "reputacion": 15, "insumos": -10 }
+        }
+    },
+
+    {
+        "id": "carta_mia_001",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mía llega a su primer día de trabajo",
+        "descripcion": "Mía es metodológica, ordenada y muy detallista con los números. ¿Dónde querés ponerla?",
+        "imagen": "📊",
+        "opcion_izquierda": {
+            "texto": "Ponerla a atender",
+            "siguiente_id": "carta_mia_002",
+            "impacto": { "dinero": 20, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Ponerla a cocinar",
+            "siguiente_id": "carta_mia_003",
+            "impacto": { "dinero": -10, "reputacion": 10, "insumos": 10 }
+        }
+    },
+    {
+        "id": "carta_mia_002",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mía es súper organizada en la caja",
+        "descripcion": "Mía cobra perfecto, da el cambio exacto y organiza las boletas en carpetas impecables.",
+        "imagen": "💵",
+        "opcion_izquierda": {
+            "texto": "Dejarla a cargo del dinero",
+            "siguiente_id": "carta_mia_004",
+            "impacto": { "dinero": 25, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": {
+            "texto": "Pedirle que atienda más clientes",
+            "siguiente_id": "carta_mia_005",
+            "impacto": { "dinero": 10, "reputacion": -5, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_mia_003",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mía mide ingredientes al miligramo",
+        "descripcion": "Mía pesa cada gramo de almidón y queso en una balanza digital para que no haya desperdicio.",
+        "imagen": "📐",
+        "opcion_izquierda": {
+            "texto": "Elogiar su precisión",
+            "siguiente_id": "carta_mia_004",
+            "impacto": { "dinero": 15, "reputacion": 20, "insumos": 20 }
+        },
+        "opcion_derecha": {
+            "texto": "Pedirle que apure el ritmo",
+            "siguiente_id": "carta_mia_005",
+            "impacto": { "dinero": 5, "reputacion": -5, "insumos": 5 }
+        }
+    },
+    {
+        "id": "carta_mia_004",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "La caja cuadra perfecto todos los días",
+        "descripcion": "Gracias al orden de Mía, la administración del local es impecable y la calidad del chipá es 100% constante.",
+        "imagen": "💎",
+        "opcion_izquierda": {
+            "texto": "Finalizar jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 25, "insumos": 10 }
+        },
+        "opcion_derecha": {
+            "texto": "Finalizar jornada",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 30, "reputacion": 25, "insumos": 10 }
+        }
+    },
+    {
+        "id": "carta_mia_005",
+        "fase": "local_centro",
+        "min_reputacion": 150,
+        "titulo": "Mía se estresa por el apuro",
+        "descripcion": "Al apurarla, Mía se pone nerviosa. Prefiere trabajar a su ritmo preciso para mantener la calidad.",
+        "imagen": "😰",
+        "opcion_izquierda": {
+            "texto": "Respetar su ritmo",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 15, "reputacion": 15, "insumos": 10 }
+        },
+        "opcion_derecha": {
+            "texto": "Respetar su ritmo",
+            "siguiente_id": "siguiente_empleado",
+            "impacto": { "dinero": 15, "reputacion": 15, "insumos": 10 }
+        }
+    },
+
+    {
         "id": "carta_rand_01",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "El Firulais Hambriento",
         "descripcion": "Un perrito te mira con cara de lástima frente al canasto de chipás.",
         "imagen": "🐶",
@@ -732,7 +1571,7 @@
     },
     {
         "id": "carta_rand_02",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "¡Qué Calorazo!",
         "descripcion": "Hace un calor terrible. Pasa un vecino vendiendo tereré bien frío.",
         "imagen": "🥵",
@@ -741,7 +1580,7 @@
     },
     {
         "id": "carta_rand_03",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "Amigos del Cole",
         "descripcion": "Pasan tus compañeros y te piden que les invites unos chipás.",
         "imagen": "⚽",
@@ -750,7 +1589,7 @@
     },
     {
         "id": "carta_rand_04",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "Reponer Mercadería",
         "descripcion": "Se te están acabando los insumos para hacer chipá y tenés que ir a comprar.",
         "imagen": "🧀",
@@ -759,7 +1598,7 @@
     },
     {
         "id": "carta_rand_05",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "¡Hora pico en el barrio!",
         "descripcion": "Salen todos del trabajo y se armó una fila enorme frente a tu canasto. ¡Quieren chipá calentito!",
         "imagen": "🏢",
@@ -774,9 +1613,9 @@
             "impacto": { "dinero": 20, "reputacion": 0, "insumos": -15 }
         }
     },
-{
+    {
         "id": "carta_rand_06",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "¡Pedido GIGANTE!",
         "descripcion": "Frenó un colectivo escolar lleno de chicos que vuelven de excursión. ¡Quieren comprarte todo!",
         "imagen": "🚌",
@@ -793,7 +1632,7 @@
     },
     {
         "id": "carta_rand_07",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "Turista Curioso",
         "descripcion": "Un turista con cámara de fotos se acerca. Nunca probó el chipá y te pregunta si es rico. ¡Quiere llevar para toda su familia!",
         "imagen": "📸",
@@ -810,7 +1649,7 @@
     },
     {
         "id": "carta_rand_08",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "La Tía Generosa",
         "descripcion": "Pasa tu tía por el puesto. Te da un abrazo gigante, te felicita por lo lindo que está todo y te deja una buena propina.",
         "imagen": "👵",
@@ -827,7 +1666,7 @@
     },
     {
         "id": "carta_rand_09",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "Desayuno de Oficina",
         "descripcion": "Se baja un oficinista apurado de un auto. Necesita comprar tres docenas urgente para una reunión con sus jefes.",
         "imagen": "💼",
@@ -844,7 +1683,7 @@
     },
     {
         "id": "carta_rand_10",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "¡Día de Suerte!",
         "descripcion": "Estás barriendo la vereda cerca del canasto y encontrás un billete grande tirado en el piso. ¡No hay nadie alrededor!",
         "imagen": "🍀",
@@ -861,7 +1700,7 @@
     },
     {
         "id": "carta_rand_11",
-        "fase": "puesto_casa",
+        "fase": "aleatorio",
         "titulo": "Show en la Vereda",
         "descripcion": "Unos músicos se ponen a tocar un chamamé en la esquina. Se junta un montón de gente y a todos les da hambre escuchando.",
         "imagen": "🎸",
@@ -874,6 +1713,108 @@
             "texto": "Quedarte mirando el show", 
             "siguiente_id": "evento_aleatorio", 
             "impacto": { "dinero": 0, "reputacion": 10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_rand_12",
+        "fase": "aleatorio",
+        "titulo": "¡Tormenta de Golpe!",
+        "descripcion": "Se largó un chaparrón de la nada. La gente corre buscando refugio bajo los techos.",
+        "imagen": "⛈️",
+        "opcion_izquierda": { 
+            "texto": "Atender rápido a todos", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 30, "reputacion": 10, "insumos": -20 }
+        },
+        "opcion_derecha": { 
+            "texto": "Cerrar para no mojarte", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": -10, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_rand_13",
+        "fase": "aleatorio",
+        "titulo": "El Tiktoker del Barrio",
+        "descripcion": "Un influencer local con miles de seguidores quiere grabar un video probando tu chipá.",
+        "imagen": "📱",
+        "opcion_izquierda": { 
+            "texto": "Regalarle para publicidad", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": 25, "insumos": -10 }
+        },
+        "opcion_derecha": { 
+            "texto": "Acá se paga", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 10, "reputacion": -10, "insumos": -5 }
+        }
+    },
+    {
+        "id": "carta_rand_14",
+        "fase": "aleatorio",
+        "titulo": "¡Aumentó la harina!",
+        "descripcion": "El proveedor te avisa que los insumos subieron de precio esta semana.",
+        "imagen": "📈",
+        "opcion_izquierda": { 
+            "texto": "Subir el precio del chipá", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 20, "reputacion": -15, "insumos": -10 }
+        },
+        "opcion_derecha": { 
+            "texto": "Absorber el costo", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": -15, "reputacion": 10, "insumos": -10 }
+        }
+    },
+    {
+        "id": "carta_rand_15",
+        "fase": "aleatorio",
+        "titulo": "El Inspector Municipal",
+        "descripcion": "Pasa un inspector a controlar la habilitación y la higiene de tu puesto.",
+        "imagen": "📋",
+        "opcion_izquierda": { 
+            "texto": "Pagar permisos", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": -25, "reputacion": 15, "insumos": 0 }
+        },
+        "opcion_derecha": { 
+            "texto": "No venderé el día de hoy", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 0, "reputacion": -5, "insumos": 0 }
+        }
+    },
+    {
+        "id": "carta_rand_16",
+        "fase": "aleatorio",
+        "titulo": "Corte de Luz en la Cuadra",
+        "descripcion": "Se cortó la luz en todo el barrio. Tu puesto a gas es de los pocos que sigue operando.",
+        "imagen": "💡",
+        "opcion_izquierda": { 
+            "texto": "Vender al doble de precio", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 40, "reputacion": -20, "insumos": -20 }
+        },
+        "opcion_derecha": { 
+            "texto": "Mantener el precio", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": 20, "reputacion": 20, "insumos": -20 }
+        }
+    },
+    {
+        "id": "carta_rand_17",
+        "fase": "aleatorio",
+        "titulo": "Epidemia de Billetes Falsos",
+        "descripcion": "Están circulando billetes falsos por la zona y tenés miedo de recibir uno.",
+        "imagen": "💵",
+        "opcion_izquierda": { 
+            "texto": "Comprar un verificador", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": -20, "reputacion": 10, "insumos": 0 }
+        },
+        "opcion_derecha": { 
+            "texto": "Ignorar", 
+            "siguiente_id": "evento_aleatorio", 
+            "impacto": { "dinero": -15, "reputacion": 0, "insumos": 0 }
         }
     },
 
